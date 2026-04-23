@@ -23,19 +23,13 @@ const Footer = () => {
         <div className="text-center md:text-left mt-4 md:mt-0 text-white md:ml-10 lg:ml-20">
           <h3 className="text-lg font-semibold">Get in touch</h3>
 
-          <div className="flex items-center mt-2">
-            <Phone className="h-5 w-5 mr-2" />
-            <span>+63 997 728 9552</span>
-          </div>
-
-          <div className="flex items-center mt-2">
-            <Mail className="h-5 w-5 mr-2" />
-            <span>kangina.ph@domain.com</span>
-          </div>
-
-          <div className="flex items-center mt-2">
-            <MapPin className="h-5 w-5 mr-2" />
-            <span>45th 21st Bldg. 02 St. Nazareth, CDO</span>
+          <div className="mt-2 space-y-2">
+            {contactInfo.map(({ icon: Icon, text }, idx) => (
+              <div key={idx} className="flex items-center justify-center md:justify-start gap-2">
+                <Icon className="h-5 w-5" />
+                <span>{text}</span>
+              </div>
+            ))}
           </div>
         </div>
 
