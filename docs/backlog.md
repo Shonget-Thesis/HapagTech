@@ -1,5 +1,5 @@
 # Product Backlog
-Project: Kangina – Smart Restaurant Ordering System
+Project: HapagTech – Smart Restaurant Ordering System
 
 ---
 
@@ -146,5 +146,19 @@ As a user, I want to be able to view my personal details, preferences, and order
 - User can view personal information and update preferences
 - User can view order history with full transaction details
 - All displayed data is accurate updated in real time after changes
+
+---
+
+## User Story 12: Cancel Order Before Preparation
+As a user, I want to cancel my order before it is prepared so that I can correct mistakes or change my decision.
+
+**Priority:** High
+**Story Points:** 5
+
+**Acceptance Criteria:**
+- User can cancel orders only when status is `Pending`
+- System blocks cancellation once status is `Preparing` or later
+- User sees clear confirmation after successful cancellation
+- Order history shows canceled status for tracking
 
 ---
