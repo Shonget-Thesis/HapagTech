@@ -1,10 +1,17 @@
 # Sprint 1 Plan
-Project: Kangina – Smart Restaurant Ordering System
+Project: HapagTech – Smart Restaurant Ordering System
 
 ---
 
 ## Sprint Duration
 Week 2 – Week 3 (2 weeks)
+
+## Change Request Update (Week 3)
+New requirement added: **Cancel Order Before Preparation**
+
+Timeline adjustment:
+- Week 2: Keep original authentication, browsing, cart, and checkout tasks
+- Week 3: Add cancellation API, cancel button in UI, and validation/testing tasks
 
 ---
 
@@ -85,3 +92,16 @@ Week 2 – Week 3 (2 weeks)
   - Store order in database with initial status (e.g., Pending)  
   - Clear cart after successful order placement  
   - Show order confirmation message to user  
+
+---
+
+### 7. Cancel Order Before Preparation (Change Request)
+- **Priority:** High
+- **Story Points:** 5
+- **Owner:** Limpahan, Mark Vincent; Chiong, Heart
+- **Tasks:**
+  - Add `Cancel Order` action in order history UI for pending orders
+  - Create backend endpoint to cancel order with status validation
+  - Restrict cancellation to `Pending` orders only
+  - Update order state to `Canceled` and persist audit info
+  - Add tests for allowed and blocked cancellation scenarios
