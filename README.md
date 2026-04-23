@@ -1,7 +1,6 @@
-# Kangina - Online Restaurant Application #
+# HapagTech – Smart Restaurant Ordering System #
 
-Kangina is a modern online restaurant application designed to provide a seamless food ordering experience. Users can browse a variety of dishes, add their favorite meals to the cart, and place orders with ease. The platform ensures convenience by allowing users to manage their profiles, save favorite items, and search for specific dishes effortlessly.
-![image](https://github.com/user-attachments/assets/bf884b13-8120-43e6-9b6f-bc71e96c6f59)
+HapagTech is a restaurant web application that allows users to browse food items, add them to a cart, and place orders seamlessly. It provides a user-friendly interface that supports customer profiles and a simple checkout system for efficient ordering. The system is designed to deliver a smooth dining experience, whether for agahan, tanghalian, hapunan, or merienda. All planning, development documentation, and project management artifacts are systematically stored and version-controlled in the GitHub repository to ensure transparency and collaboration.
 
 
 ## Features: ##
@@ -10,4 +9,9 @@ Kangina is a modern online restaurant application designed to provide a seamless
 - **Favorites** – Save preferred dishes for quick access.  
 - **Search Functionality** – Easily find dishes by name or category.  
 
-Kangina is built to deliver a smooth and efficient restaurant ordering experience, ensuring that users can enjoy their favorite meals with just a few clicks.
+## Planned Features: ##
+- **Cancel Order Before Preparation** – Allow users to cancel orders while they are still in `Pending` status.  
+- **Order History Status Updates** – Show canceled orders in the user order history for better tracking.  
+- **Cancellation Validation** – Prevent cancellation once an order is already being prepared or completed.  
+
+HapagTech is built to deliver a smooth and efficient restaurant ordering experience, ensuring that users can enjoy their favorite meals with just a few clicks.
