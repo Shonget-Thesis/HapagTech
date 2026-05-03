@@ -13,6 +13,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [isExiting, setIsExiting] = useState(false);
+  const [validationError, setValidationError] = useState<string | null>(null);
   const { login, isLoading, error, isAuthenticated } = useAuthStore();
   const navigate = useNavigate();
 
@@ -26,8 +27,15 @@ const Login = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setValidationError(null);
     if (!email || !password) {
-      window.alert('Please fill in all fields');
+      setValidationError('Please fill in all fields');
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setValidationError('Please enter a valid email address');
       return;
     }
     try {
@@ -182,6 +190,11 @@ const Login = () => {
               </motion.button>
             </motion.form>
            
+            {validationError && (
+              <motion.p className="mt-2 text-red-500" variants={itemVariants} initial="hidden" animate="visible">
+                {validationError}
+              </motion.p>
+            )}
             {error && (
               <motion.p
                 className="mt-2 text-red-500"

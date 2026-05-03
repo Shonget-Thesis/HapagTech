@@ -33,25 +33,39 @@ class LoginView(APIView):
         email = request.data.get('email')
         password = request.data.get('password')
         logger.info(f"Attempting to authenticate user with email: {email}")
-        
+
+        if not email or not password:
+            return Response({'error': 'Email and password are required'}, status=status.HTTP_400_BAD_REQUEST)
+
+        from django.core.validators import validate_email
+        from django.core.exceptions import ValidationError
+
         try:
-            # Check if user exists
-            user = User.objects.get(email=email)
-            
-            # Check password
-            if user.check_password(password):
-                refresh = RefreshToken.for_user(user)
-                return Response({
-                    'refresh': str(refresh),
-                    'access': str(refresh.access_token),
-                    'user': UserSerializer(user).data
-                })
-            else:
-                return Response({'error': 'Invalid password'}, status=status.HTTP_400_BAD_REQUEST)
-                
-        except User.DoesNotExist:
-            logger.error(f"No user found with email: {email}")
-            return Response({'error': 'User not found'}, status=status.HTTP_400_BAD_REQUEST)
+            validate_email(email)
+        except ValidationError:
+            return Response({'error': 'Invalid email format'}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            user = User.objects.filter(email=email).first()
+
+            # Generic error message to avoid user enumeration
+            generic_error = {'error': 'Invalid credentials'}
+
+            if not user:
+                logger.warning(f"Authentication failed for email: {email}")
+                return Response(generic_error, status=status.HTTP_401_UNAUTHORIZED)
+
+            if not user.check_password(password):
+                logger.warning(f"Authentication failed for email: {email}")
+                return Response(generic_error, status=status.HTTP_401_UNAUTHORIZED)
+
+            refresh = RefreshToken.for_user(user)
+            return Response({
+                'refresh': str(refresh),
+                'access': str(refresh.access_token),
+                'user': UserSerializer(user).data
+            })
+
         except Exception as e:
             logger.error(f"Error during authentication: {str(e)}")
             return Response({'error': 'Authentication error'}, status=status.HTTP_400_BAD_REQUEST)
