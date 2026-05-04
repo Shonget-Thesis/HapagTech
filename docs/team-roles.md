@@ -1,5 +1,5 @@
 # Team Roles
-Project: Kangina – Smart Restaurant Ordering System
+Project: HapagTech – Smart Restaurant Ordering System
 
 ---
 
