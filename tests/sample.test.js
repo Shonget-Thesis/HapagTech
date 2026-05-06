@@ -1,36 +1,34 @@
-// 1. Order Creation
+// Functions with logging
 function createOrder(items) {
-  return {
-    id: 1,
-    items: items,
-    status: 'pending'
-  };
+  console.log('[LOG] Creating order with items:', items);
+  return { id: 1, items, status: 'pending' };
 }
 
-// 2. Menu Retrieval
 function getMenu() {
+  console.log('[LOG] Fetching menu');
   return ['Burger', 'Fries', 'Drink'];
 }
 
-// 3. Cart Total Calculation
 function calculateTotal(prices) {
-  return prices.reduce((sum, price) => sum + price, 0); // FIXED
+  console.log('[LOG] Calculating total for:', prices);
+  return prices.reduce((sum, price) => sum + price, 0);
 }
 
-// 4. API Response Validation
 function fetchOrder() {
+  console.log('[LOG] Fetching order from API');
   return {
     success: true,
     data: { id: 1, total: 150 }
   };
 }
 
-// 5. Input Validation
 function isValidOrderInput(input) {
+  console.log('[LOG] Validating input:', input);
   return input !== null && input.length > 0;
 }
 
 
+// TESTS (IMPORTANT PART)
 describe('HapagTech System Tests', () => {
 
   test('Order creation should return a valid order object', () => {
