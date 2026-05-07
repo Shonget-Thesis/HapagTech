@@ -1,4 +1,5 @@
-# HapagTech System Architecture
+# System Architecture
+Project: HapagTech – Smart Restaurant Ordering System
 
 ## System Overview Diagram
 
