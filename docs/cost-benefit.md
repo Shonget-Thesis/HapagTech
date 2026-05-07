@@ -19,7 +19,7 @@ Project: HapagTech – Smart Restaurant Ordering System
 | Frontend Developer | Team | 160 | ₱450 | ₱72,000 |
 | **TOTAL DEVELOPMENT COST** | | **600 hours** | | **₱269,200** |
 
-**Source:** [Philippine IT Council Salary Survey 2026](https://www.phictc.org/), [Glassdoor Philippines Developer Rates](https://www.glassdoor.com/Salaries/philippines-developer-salary-SRCH_IL.0,12_IN202_KO13,22.htm)
+**Source:** [Developer Hourly Rate In The Philippines (2026)](https://lemon.io/rate-calculator/philippines/), [Philippines Software Development Rates in 2026](https://www.hireplicity.com/blog/philippines-developer-rates-hourly-project-based)
 
 ---
 
@@ -223,6 +223,8 @@ Risk level: **Medium** (depends heavily on restaurant partner acquisition)
 - Cumulative benefit to restaurant partners: ₱3,000,000 (20 restaurants × ₱150k increased revenue)
 
 **Key Success Metric:** Customer ordering via app reaches 60% of total orders by Year 1 end, demonstrating strong product adoption and market fit.
+
+---
 
 **Short Case Study Summary**
 

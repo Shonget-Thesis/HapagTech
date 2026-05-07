@@ -34,3 +34,12 @@ export const searchProducts = async (query: string): Promise<Product[]> => {
     return handleApiError(`search products for query "${query}"`, error);
   }
 };
+
+export const getAllProducts = async (): Promise<Product[]> => {
+  try {
+    const { data } = await api.get<Product[]>('/products/');
+    return data;
+  } catch (error) {
+    return handleApiError('load all products', error);
+  }
+};

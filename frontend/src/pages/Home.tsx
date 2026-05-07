@@ -1,13 +1,13 @@
 // src/pages/Home.tsx 
 import React from 'react';
-import LeftSidebar from '../components/Sidebar/LeftSidebar';
-import RightSidebar from '../components/Sidebar/RightSidebar';
+import LeftSidebar from '../components/layout/LeftSidebar';
+import RightSidebar from '../components/layout/RightSidebar';
 import useAppStore from '../store/HomeUserStore';
 import { useProducts } from '../hooks/products/useProducts';
 import { CategorySelector } from '../components/products/CatergorySelector';
 import { ProductGrid } from '../components/products/ProductGrid';
 import SearchBar from '../components/Searchbar';
-import UserProfile from '../components/userprofile/UserProfile';
+import UserProfile from '../components/profile/UserProfile';
 
 const Home: React.FC = () => {
     const { activeSection } = useAppStore();

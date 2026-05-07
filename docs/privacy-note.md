@@ -1,176 +1,170 @@
-# Privacy Note — HapagTech
+# Privacy Note
+Project: HapagTech – Smart Restaurant Ordering System
+
+---
 
 **Last Updated:** May 2026  
 **Status:** Demo / Non-production  
-**Note:** This privacy note describes data handling practices for the HapagTech demo platform. Production deployments must align with applicable privacy laws (GDPR, CCPA, PIPEDA, etc.) and obtain legal review.
+**Note:** This document outlines the data handling practices of the HapagTech demonstration platform. Any production deployment must comply with applicable data protection regulations (e.g., GDPR, CCPA, PIPEDA) and undergo appropriate legal review.
 
 ---
 
 ## Data Collected
 
-### 1. **Account & Profile Data**
-- **Full name, email address, phone number** — provided during registration
-- **Delivery/billing address** — collected at checkout
-- **Profile picture** — optional, uploaded by user
-- **Dietary preferences & restrictions** — (e.g., dairy-free, vegan, gluten-free) selected during signup or profile edit
-- **Account creation date, last login** — automatically recorded
+### 1. **Account and Profile Information**
+- **Personal details** such as full name, email address, and contact number provided during registration
+- **Billing and delivery addresses** collected during checkout
+- **Profile image**, optionally uploaded by the user
+- **Dietary preferences and restrictions** (e.g., vegan, gluten-free), provided during account setup or profile updates
+- **System-generated data** including account creation date and last login activity
 
-### 2. **Behavioral & Browsing Data**
-- **Product views & favorites** — which items user browses, saves, or marks as favorite
-- **Search queries** — what terms user enters in product search
-- **Cart contents** — items added/removed (including timestamps)
-- **Session ID & device info** — browser type, OS, approximate geolocation (IP-based, not GPS)
-- **Click patterns** — interactions with filters, sorting, recommendations
+### 2. **Behavioral and Browsing Information**
+- **User interactions**, including product views, saved items, and favorites
+- **Search activity**, including queries entered in the platform
+- **Cart activity**, such as items added or removed with corresponding timestamps
+- **Technical data**, including session identifiers, browser type, operating system, and approximate IP-based location
+- **Interaction patterns**, such as use of filters, sorting tools, and recommendation features
 
-### 3. **Transaction & Order Data**
-- **Order history** — items purchased, quantity, price, timestamps
-- **Payment method type** — (e.g., "credit card", "PayPal") — NOT full card numbers (handled by payment processor)
-- **Order status & tracking** — delivery dates, merchant assigned
-- **Reviews & ratings** — if user submits product reviews or ratings
-- **Return requests & disputes** — refund/return history
+### 3. **Transaction and Order Information**
+- **Order records**, including purchased items, quantities, pricing, and timestamps
+- **Payment method category** (e.g., credit card, debit card), excluding sensitive financial details, which are handled by third-party processors
+- **Order tracking data**, including delivery status and assigned merchant
+- **User-generated content**, such as product reviews and ratings
+- **Returns and dispute history**, including refund requests
 
 ### 4. **Communication Data**
-- **Support messages** — emails, chat logs with customer support
-- **Opt-in marketing communications** — email subscription status, preferences
-- **Newsletters** — frequency and content preferences
+- **Customer support interactions**, including emails and chat logs
+- **Marketing preferences**, including subscription status and communication settings
+- **Newsletter engagement**, including frequency and content preferences
 
 ---
 
-## Why We Collect This Data (Purpose & Legal Basis)
-
-| Data Category | Purpose | Legal Basis |
-|---|---|---|
-| Account & Profile | Service provision, order fulfillment, identity verification | Contract performance, consent |
-| Delivery/Billing Address | Shipping, invoicing, fraud prevention | Contract performance, legal obligation |
-| Dietary Preferences | Personalize product recommendations, filter search results, improve UX | Consent, legitimate interest (service quality) |
-| Behavioral & Browsing | Improve product ranking, detect trends, personalize recommendations, analytics | Legitimate interest, consent (cookies) |
-| Transaction Data | Order fulfillment, payment reconciliation, customer support, dispute resolution | Contract performance, legal obligation |
-| Payment Info | Payment processing (routed to third-party processor) | Contract performance, legal obligation |
-| Support Messages | Resolve customer issues, improve service, audit trail | Contract performance, consent |
-| Marketing Communications | Send promotional offers, product announcements (if user opted in) | Consent, consent withdrawal at any time |
+## Purpose of Data Collection and Legal Basis
+Personal data is collected and processed in accordance with the principles of transparency, legitimate purpose, and proportionality under the Data Privacy Act of 2012.
+- **Service Provision and Order Fulfillment:**
+Processing is necessary for the performance of a contract, including the facilitation of user transactions, order processing, and delivery of requested services.
+- **Shipping, Billing, and Fraud Prevention:**
+Processing is conducted to comply with legal obligations and to support the legitimate interests of ensuring secure transactions, accurate billing, and fraud detection and prevention.
+- **Personalization of User Experience:**
+Processing is based on the data subject’s consent and, where applicable, the legitimate interests of enhancing service quality through tailored recommendations and user-specific features.
+- **System Analytics and Performance Optimization:**
+Processing is undertaken on the basis of legitimate interests to improve system functionality, reliability, and efficiency, supplemented by user consent where required (e.g., for non-essential cookies and tracking technologies).
+- **Transaction Management and Dispute Resolution:**
+Processing is necessary for the performance of a contract and compliance with legal obligations, including maintaining transaction records, handling disputes, and ensuring financial accountability.
+- **Customer Support Operations:**
+Processing is carried out to fulfill contractual obligations and, where applicable, based on user consent, in order to respond to inquiries, resolve issues, and maintain service quality.
+- **Marketing and Promotional Communications:**
+Processing is conducted solely on the basis of explicit, informed consent provided by the user, with the option to withdraw such consent at any time without affecting the lawfulness of prior processing.
 
 ---
 
 ## Data Retention
-
-| Data Type | Retention Period | Reason for Retention |
-|---|---|---|
-| **Active Account Data** (name, email, address, preferences) | Duration of account + 90 days after deletion | Regulatory compliance (invoicing), fraud prevention |
-| **Order History** | 7 years | Legal/tax obligations (e-commerce records, accounting) |
-| **Payment Records** | 7 years | PCI-DSS compliance, dispute resolution |
-| **Behavioral/Browsing Logs** | 90 days | Analytics, security, performance optimization |
-| **Session Data** | 24 hours | Session management, fraud detection |
-| **Support Tickets & Messages** | 2 years | Audit trail, dispute resolution |
-| **Marketing Emails (if opted in) | Until user unsubscribes | Compliance with CAN-SPAM / GDPR consent |
-| **Deleted Account Data** | Purged within 90 days | Legal hold exceptions noted |
+Personal data is retained only for as long as necessary to fulfill operational and legal requirements:
+- **Account data:** Retained for the duration of account activity and up to 90 days after deletion
+- **Order and payment records:** Maintained for up to 7 years to comply with legal and accounting requirements
+- **Behavioral and browsing data:** Retained for approximately 90 days for analytics and security purposes
+- **Session data:** Stored for up to 24 hours
+- **Support communications:** Retained for up to 2 years
+- **Marketing data:** Retained until the user withdraws consent
+- **Deleted account data:** Permanently removed within 90 days, subject to legal obligations
 
 ---
 
-## How We Use Your Data
-
-- **Service Delivery:** Process orders, manage payments, arrange delivery
-- **Personalization:** Recommend products based on dietary restrictions and browsing history
-- **Communication:** Send order confirmations, shipping updates, support responses, and (if opted in) marketing emails
-- **Analytics & Improvement:** Aggregate, anonymized analysis to improve search, recommendations, and platform performance
-- **Fraud & Security:** Detect suspicious activity, prevent account takeover, enforce terms of service
-- **Legal Compliance:** Tax reporting, dispute resolution, regulatory inquiries
-
----
-
-## Data Sharing & Third Parties
-
-We share your data **only** with:
-- **Payment Processors** (Stripe, PayPal, etc.) — payment info only
-- **Delivery Partners** — name, address, phone for order fulfillment
-- **Merchant/Supplier Partners** — order details necessary for fulfillment (your name, address, items purchased)
-- **Analytics Providers** — aggregated, anonymized usage data only (no PII)
-- **Customer Support Tools** — ticket/message data (encrypted in transit)
-- **Legal/Law Enforcement** — only when required by law, with transparency
-
-**We do NOT:**
-- Sell your personal data to third parties
-- Share dietary or health preferences with advertisers or data brokers
-- Use your data for purposes beyond what you've consented to
+## Use of Data
+Collected data is utilized to:
+- Facilitate service delivery, including order processing and fulfillment
+- Personalize user experience through recommendations and preferences
+- Communicate essential updates and optional marketing content
+- Improve system performance through aggregated analytics
+- Detect and prevent fraudulent or unauthorized activities
+- Ensure compliance with applicable legal and regulatory requirements
 
 ---
 
-## Your Rights
+## Data Sharing and Third Parties
+- Personal data is disclosed only to authorized third parties under lawful and necessary circumstances, in compliance with the Data Privacy Act of 2012.
+- Data sharing agreements shall be established where applicable to ensure protection of personal data.
 
-### **In All Jurisdictions:**
-1. **Access:** Request a copy of your personal data via the account settings "Download My Data" feature or contacting privacy@hapagtech.demo
-2. **Correction:** Update your profile information directly in account settings; contact support for corrections you cannot make yourself
-3. **Deletion:** Request account deletion via account settings or email. Data will be anonymized/purged within 90 days (legal holds excepted)
-4. **Withdraw Consent:** Unsubscribe from marketing emails at any time (link in every email or via preferences)
+Personal data is shared only when necessary with:
+- **Payment service providers** for secure transaction processing
+- **Delivery partners** for order fulfillment
+- **Merchants and suppliers** for order execution
+- **Analytics providers**, using anonymized and aggregated data
+- **Customer support platforms** for handling user inquiries
+- **Legal authorities**, when required by law
 
-### **In GDPR/PIPEDA Jurisdictions (EU, Canada, etc.):**
-5. **Data Portability:** Request your data in machine-readable format (CSV, JSON)
-6. **Object:** Object to processing for marketing or profiling purposes
-7. **Restrict Processing:** Request that we limit use to storage only during a dispute
-8. **Lodge a Complaint:** File a complaint with your data protection authority (e.g., ICO in UK, CNIL in France)
+The platform does not:
+- Sell personal data
+- Share sensitive preferences with advertisers
+- Use data beyond the scope of user consent
 
-### **In CCPA Jurisdictions (California, etc.):**
-9. **Right to Know:** Request what personal information we collect, use, and share
-10. **Right to Delete:** Request deletion of collected personal information (with legal exceptions)
-11. **Right to Opt-Out:** Opt out of "sale" or "sharing" of personal information for cross-context behavioral advertising (we do not enable this by default)
-12. **Non-Discrimination:** We do not discriminate against you for exercising CCPA rights
+---
+
+## User Rights
+Users are granted the following rights under the Data Privacy Act of 2012:
+1. **Right to be Informed:** Users have the right to be informed whether personal data pertaining to them is being processed.
+2. **Right of Access:** Users may request access to their personal data and information about its processing.
+3. **Right to Rectification:** Users may request correction of inaccurate or incomplete personal data.
+4. **Right to Erasure or Blocking:** Users may request suspension, withdrawal, or deletion of their personal data, subject to legal and contractual obligations.
+5. **Right to Data Portability:** Users may obtain a copy of their personal data in a structured and commonly used format.
+6. **Right to Damages:** Users may claim compensation for damages due to inaccurate, incomplete, outdated, or unlawfully obtained personal data.
+7. **Right to File a Complaint:** Users may lodge complaints with the National Privacy Commission.
 
 ### **How to Exercise Your Rights:**
 - **Email:** privacy@hapagtech.demo
 - **In-App:** Account Settings → Privacy & Data
-- **Requests:** We aim to respond within 30 days (up to 90 days for complex requests)
-- **Verification:** We may ask for identity verification before fulfilling requests
+- Requests will be processed within a reasonable period, subject to identity verification.
 
 ---
 
 ## Security Measures
-
-- **Encryption:** All data in transit uses TLS 1.3; sensitive data at rest is encrypted
-- **Access Controls:** Only authorized staff with need-to-know access can view personal data
-- **Authentication:** Password hashing (bcrypt), optional MFA for account protection
-- **Audit Logging:** All access to sensitive data is logged for compliance audits
-- **Incident Response:** In the event of a breach, we will notify affected users within 72 hours (where legally required)
+The platform implements organizational, physical, and technical security measures in accordance with Data Privacy Act requirements:
+- Encryption of data in transit and at rest
+- Role-based access control
+- Secure authentication mechanisms, including password hashing and optional multi-factor authentication
+- Audit logging for monitoring data access
+Incident response procedures, including user notification in case of breaches
 
 ---
 
-## Cookies & Tracking
-
-- **Session Cookies:** Essential for login and cart functionality (no user consent required)
-- **Analytics Cookies:** Optional; track usage patterns to improve UX (consent required via banner)
-- **Marketing Cookies:** Optional; enable personalized ads if you've consented (can disable in preferences)
-- **Third-Party Cookies:** Our payment and analytics partners may set cookies; review their privacy policies
+## Cookies & Tracking Technologies
+- **Essential cookies** for session management and core functionality
+- **Analytics cookies** to improve user experience (with consent)
+- **Marketing cookies** for personalized advertising (optional)
+- **Third-party cookies** from integrated services
+Users may manage cookie preferences through browser settings or account controls.
 
 Users can disable non-essential cookies in browser settings or account preferences.
 
 ---
 
 ## Children's Privacy
-
-HapagTech is not directed to children under 13 (or applicable age of digital consent in your jurisdiction). We do not knowingly collect data from children under 13. If we become aware of such collection, we will delete the data and close the account. Parents/guardians concerned about a child's account should contact privacy@hapagtech.demo.
+HapagTech does not knowingly collect personal data from individuals below the age of 18, or the applicable age of consent under Philippine law, without parental or guardian consent.
 
 ---
 
 ## International Data Transfers
-
-If you are outside the region where HapagTech servers are located, your data may be transferred internationally. By using HapagTech, you consent to such transfers. We rely on Standard Contractual Clauses (SCCs) or adequacy decisions to ensure your data is protected to similar standards.
+Cross-border data transfers, if any, shall comply with applicable data protection requirements and ensure that personal data remains adequately protected.
 
 ---
 
 ## Policy Changes
 
-We may update this privacy note to reflect new features, regulations, or practices. Changes will be effective 30 days after posting to this page. Continued use of HapagTech after changes constitute acceptance.
+This privacy notice may be revised periodically to reflect system changes or regulatory updates. Modifications will take effect 30 days after publication.
 
 ---
 
 ## Contact
-
-For privacy questions, requests, or complaints:
+For inquiries or requests:
 
 **Email:** privacy@hapagtech.demo  
-**Mailing Address:** HapagTech, Privacy Team, [Demo Address], [City], [Country]  
+**Mailing Address:** HapagTech, Privacy Team, 123 Street, Cagayan de Oro City, Philippines  
 **Response Time:** 30 days for standard requests; 90 days for complex requests  
-**Data Protection Officer (DPO):** dpo@hapagtech.demo (EU/regulated entities)
+**Data Protection Officer (DPO):** dpo@hapagtech.demo 
+
+*You may also contact the National Privacy Commission for concerns regarding your data privacy rights.*
 
 ---
 
 **Demo Disclaimer:**  
-This is a demonstration platform. Production deployments must conduct a formal privacy impact assessment (PIA/DPIA), obtain legal review, and align with applicable laws (GDPR, CCPA, PIPEDA, LGPD, etc.). This note is provided for educational purposes and must be tailored to your jurisdiction and specific practices before launch.
+This platform is intended for demonstration purposes only. Any production deployment must conduct a Privacy Impact Assessment (PIA), comply with the Data Privacy Act of 2012, and align with applicable regulations and standards. This document is provided for academic purposes and must be reviewed and adapted prior to actual implementation.
