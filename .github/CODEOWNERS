@@ -1,0 +1,8 @@
+# Default owner for all files
+* @Shonget-Thesis
+
+# Frontend landing page ownership
+/frontend/src/pages/Landingpage/ @Shonget-Thesis
+
+# Documentation ownership
+/docs/ @Shonget-Thesis

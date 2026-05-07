@@ -1,4 +1,4 @@
-// src/pages/Home.tsx
+// src/pages/Home.tsx 
 import React from 'react';
 import LeftSidebar from '../components/layout/LeftSidebar';
 import RightSidebar from '../components/layout/RightSidebar';

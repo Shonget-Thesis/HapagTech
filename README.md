@@ -3,7 +3,7 @@
 HapagTech is a restaurant web application that allows users to browse food items, add them to a cart, and place orders seamlessly. It provides a user-friendly interface that supports customer profiles and a simple checkout system for efficient ordering. The system is designed to deliver a smooth dining experience, whether for agahan, tanghalian, hapunan, or merienda. All planning, development documentation, and project management artifacts are systematically stored and version-controlled in the GitHub repository to ensure transparency and collaboration.
 
 
-## Features: ##
+## Current Features: ##
 - **User Profile Management** – Edit and update personal information.  
 - **Add to Cart** – Select multiple food items and review the cart before ordering.  
 - **Favorites** – Save preferred dishes for quick access.  
