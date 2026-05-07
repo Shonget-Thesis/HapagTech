@@ -1,1 +1,157 @@
 @import "tailwindcss";
+
+@layer base {
+	body {
+		background-color: #ffffff;
+	}
+}
+
+@keyframes nav-glow-trace {
+	0% {
+		transform: rotate(225deg) scale(0.92);
+		opacity: 0;
+	}
+
+	8% {
+		opacity: 1;
+	}
+
+	25% {
+		transform: rotate(315deg) scale(1);
+		opacity: 1;
+	}
+
+	50% {
+		transform: rotate(405deg) scale(1.02);
+		opacity: 0.98;
+	}
+
+	75% {
+		transform: rotate(495deg) scale(1.01);
+		opacity: 0.9;
+	}
+
+	100% {
+		transform: rotate(585deg) scale(1);
+		opacity: 0;
+	}
+}
+
+@keyframes nav-glow-bloom {
+	0% {
+		transform: rotate(225deg) scale(0.96);
+		opacity: 0;
+	}
+
+	20% {
+		opacity: 0.55;
+	}
+
+	55% {
+		transform: rotate(405deg) scale(1.03);
+		opacity: 0.75;
+	}
+
+	100% {
+		transform: rotate(585deg) scale(1.04);
+		opacity: 0;
+	}
+}
+
+.nav-button-trace {
+	isolation: isolate;
+	transition-property: color, background-color, border-color, box-shadow, transform;
+}
+
+.nav-button-trace::before,
+.nav-button-trace::after {
+	content: "";
+	position: absolute;
+	inset: -1px;
+	border-radius: 9999px;
+	pointer-events: none;
+	opacity: 0;
+	transition: opacity 180ms ease-out;
+	will-change: transform, opacity;
+	mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+	mask-composite: exclude;
+	padding: 2px;
+}
+
+.nav-button-trace::before {
+	background: conic-gradient(
+		from 225deg,
+		rgba(237, 63, 37, 0),
+		rgba(255, 214, 201, 0.16) 10deg,
+		rgba(237, 63, 37, 0.98) 46deg,
+		rgba(255, 246, 243, 0.62) 70deg,
+		rgba(237, 63, 37, 0) 112deg,
+		rgba(237, 63, 37, 0) 360deg
+	);
+	filter: drop-shadow(0 0 5px rgba(237, 63, 37, 0.28)) drop-shadow(0 0 11px rgba(237, 63, 37, 0.12));
+}
+
+.nav-button-trace::after {
+	inset: -3px;
+	padding: 3px;
+	background: conic-gradient(
+		from 225deg,
+		rgba(237, 63, 37, 0),
+		rgba(237, 63, 37, 0.18) 14deg,
+		rgba(255, 255, 255, 0.26) 36deg,
+		rgba(237, 63, 37, 0.1) 66deg,
+		rgba(237, 63, 37, 0) 112deg,
+		rgba(237, 63, 37, 0) 360deg
+	);
+	filter: blur(7px);
+}
+
+.nav-button-trace:hover::before,
+.nav-button-trace:focus-visible::before {
+	animation: nav-glow-trace 1.15s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+	opacity: 1;
+}
+
+.nav-button-trace:hover::after,
+.nav-button-trace:focus-visible::after {
+	animation: nav-glow-bloom 1.15s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+	opacity: 1;
+}
+
+.nav-button-trace:hover,
+.nav-button-trace:focus-visible {
+	box-shadow: 0 0 0 1px rgba(237, 63, 37, 0.08), 0 10px 28px rgba(237, 63, 37, 0.08);
+}
+
+.nav-button-trace:focus-visible {
+	outline: none;
+}
+
+.footer-link {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	transition: color 180ms ease;
+}
+
+.footer-link::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: -2px;
+	width: 100%;
+	height: 1px;
+	background: currentColor;
+	transform: scaleX(0);
+	transform-origin: left;
+	transition: transform 220ms ease;
+}
+
+.footer-link:hover::after,
+.footer-link:focus-visible::after {
+	transform: scaleX(1);
+}
+
+.page-shell {
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}

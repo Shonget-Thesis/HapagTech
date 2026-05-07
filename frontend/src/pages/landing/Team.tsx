@@ -10,8 +10,8 @@ interface MemberCardProps {
 
 const MemberCard: React.FC<MemberCardProps> = ({ image, name, title }) => {
   return (
-    <div className="flex flex-col items-center text-center w-62">
-      <div className="w-48 h-48 mb-4">
+    <div className="flex flex-col items-center text-center w-full max-w-xs rounded-2xl bg-white p-6 shadow-sm border border-[#32347C]/10">
+      <div className="w-44 h-44 mb-4 rounded-full bg-white/40 p-2">
         <img 
           src={image} 
           alt={name} 
@@ -26,11 +26,15 @@ const MemberCard: React.FC<MemberCardProps> = ({ image, name, title }) => {
 
 const Team = () => {
   return (
-    <section className="bg-[#f6f6f6] py-10 md:py-16">
+    <section className="bg-white py-12 md:py-16">
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-extrabold text-[#32347C] text-center mb-12">Meet the Team</h2>
-        
-        <div className="flex flex-col items-center gap-4 p-4 md:p-8 md:flex-row md:items-baseline md:justify-around md:gap-5">
+        <div className="mx-auto mb-10 max-w-2xl text-center">
+          <p className="text-sm font-semibold uppercase tracking-[0.28em] text-[#FF5300]">Our people</p>
+          <h2 className="mt-3 text-4xl font-extrabold text-[#32347C]">Meet the Team</h2>
+          <p className="mt-4 text-base text-[#525252]">A small crew with a shared taste for bold ideas and polished execution.</p>
+        </div>
+
+        <div className="flex flex-col items-center gap-6 p-4 md:p-6 md:flex-row md:items-stretch md:justify-center md:gap-8">
           <MemberCard 
             image={Mark} 
             name="Mark Vincent Limpahan" 

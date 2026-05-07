@@ -4,18 +4,31 @@ import AnimatedCounter from '../../components/ui/AnimatedCounter';
 
 const About = () => {
   return (
-    <section className="bg-[#F58E26] py-12 text-white md:mt-0.4 p-10">
-      <div className="container mx-auto flex flex-col md:flex-row justify-center items-center gap-4">
-        {/* Carousel - Now automatic */}
-        <div className="w-full md:w-1/2 sm:w-2/3 lg:w-1/3 mb-6 md:mb-0 flex justify-center flex-1">
-          <Carousel />
-        </div>
+    <section className="bg-white py-12 text-[#2D2D2D] md:mt-0.4">
+      <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 md:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-22">
+        <motion.div
+          className="w-full flex justify-center"
+          initial={{ opacity: 0, x: -24 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <div className="w-full h-full md:w-1/2 sm:w-2/3 lg:w-1/3 mb-6 md:mb-0 flex justify-center flex-1">
+            <Carousel />
+          </div>
+        </motion.div>
 
         {/* Text and Stats */}
-        <div className="w-full md:w-1/2 text-center md:text-left flex flex-col justify-center items-center md:items-start flex-1 md:pl-8">
+        <motion.div
+          className="w-full text-center md:text-left flex flex-col justify-center items-center md:items-start lg:max-w-[560px] lg:mx-0"
+          initial={{ opacity: 0, x: 24 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        >
           {/* Animated Heading */}
           <motion.h2
-            className="text-[3em] uppercase font-bold text-white "
+            className="text-[3em] uppercase font-bold text-[#2D2D2D]"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -26,7 +39,7 @@ const About = () => {
 
           {/* Animated Paragraph */}
           <motion.p
-            className="max-w-[53ch] font-light text-lg mb-6"
+            className="w-full max-w-[58ch] font-light text-lg mb-6 text-[#2D2D2D]/90"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -37,7 +50,7 @@ const About = () => {
 
           {/* Animated Statistics Section with Dynamic Counters */}
           <motion.div
-            className="flex justify-center md:justify-start gap-8 mb-8"
+            className="flex flex-wrap justify-center md:justify-start gap-8 mb-8"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -48,7 +61,7 @@ const About = () => {
             <AnimatedCounter targetValue={9876} label="satisfied diners" delay={1000} />
             <AnimatedCounter targetValue={16} label="award winning" delay={1200} />
           </motion.div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -2,7 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { EyeIcon, EyeOffIcon } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import LogoRed from '../components/ui/LogoRed';
+import LogoOrange from '../components/ui/LogoOrange';
 import FoodRed1 from "../assets/FoodRed1.png";
 import Food1 from "../assets/Food1.png"
 import { useAuthStore } from '../hooks/auth/useauth';
@@ -114,7 +114,7 @@ const Login = () => {
           <div className="w-[460px]">
             <motion.div variants={itemVariants}>
               <Link to="/">
-                <LogoRed className="cursor-pointer w-8"/>
+                <LogoOrange className="cursor-pointer w-8"/>
               </Link>
             </motion.div>
             

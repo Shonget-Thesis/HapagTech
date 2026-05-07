@@ -17,3 +17,8 @@ export const searchProducts = async (query: string) => {
   const { data } = await api.get<Product[]>(`/products/search?q=${encodeURIComponent(query)}`);
   return data;
 };
+
+export const getAllProducts = async () => {
+  const { data } = await api.get<Product[]>('/products/');
+  return data;
+};
