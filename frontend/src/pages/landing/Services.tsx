@@ -110,14 +110,7 @@ const Features = () => {
     <section className="bg-[#2D2D2D] py-12 font-sans">
       <div className="relative mx-auto max-w-6xl px-4 md:px-6 lg:px-8">
         <motion.div
-          className="grid gap-14 md:grid-cols-3 lg:gap-16" 
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={{
-            hidden: {},
-            visible: { transition: { staggerChildren: 0.12 } },
-          }}
+          className="grid gap-14 md:grid-cols-3 lg:gap-16"
         >
           {serviceCards.map((card) => (
             <motion.div

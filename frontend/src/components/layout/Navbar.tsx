@@ -14,7 +14,7 @@ const Navbar: React.FC = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    const pendingTarget = sessionStorage.getItem('kangina-scroll-target')
+    const pendingTarget = sessionStorage.getItem('hapagtech-scroll-target')
     if (!pendingTarget || location.pathname !== '/') return
 
     const targetElement = document.getElementById(pendingTarget)
@@ -26,7 +26,7 @@ const Navbar: React.FC = () => {
       top: elementPosition + window.pageYOffset - headerOffset,
       behavior: 'smooth',
     })
-    sessionStorage.removeItem('kangina-scroll-target')
+    sessionStorage.removeItem('hapagtech-scroll-target')
   }, [location.pathname])
 
   const handleDesktopNavigation = (target: string) => {
@@ -43,7 +43,7 @@ const Navbar: React.FC = () => {
       return
     }
 
-    sessionStorage.setItem('kangina-scroll-target', target)
+    sessionStorage.setItem('hapagtech-scroll-target', target)
     navigate('/')
   }
 
