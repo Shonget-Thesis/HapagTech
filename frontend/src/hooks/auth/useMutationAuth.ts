@@ -21,6 +21,11 @@ export const useMutationAuth = () => {
   const register = useMutation({
     mutationFn: async (data: RegisterData) => {
       return await authService.register(data);
+    },
+    onSuccess: (data: { access: string; refresh: string; user: AuthUser }) => {
+      localStorage.setItem(ACCESS_TOKEN, data.access);
+      localStorage.setItem(REFRESH_TOKEN, data.refresh);
+      queryClient.setQueryData(['user'], data.user);
     }
   });
 

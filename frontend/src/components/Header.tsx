@@ -171,7 +171,7 @@ const Header = () => {
           style={{ transform: `scale(${1 - scrollProgress * 0.12})` }}
         >
           <Link
-            to="/login"
+            to="/register"
             onClick={handleGetStartedClick}
             className={`arrow-btn ${clicked ? 'clicked' : ''}`}
           >

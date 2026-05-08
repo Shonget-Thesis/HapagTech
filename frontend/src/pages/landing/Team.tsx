@@ -119,11 +119,9 @@ const MemberCard: React.FC<MemberCardProps> = ({ image, name, title, description
   return (
     <div ref={cardRef} className="member-card">
       <canvas ref={canvasRef} className="glow-canvas" aria-hidden="true" />
-      
-      {/* Fixed height card — content animates inside */}
       <div className="card-inner">
 
-        {/* Layer 1: Default view — image + name + role stacked */}
+        {/* Layer 1  */}
         <div className="default-layer">
           <div className="card-image">
             <img src={image} alt={name} className="w-full h-full object-contain" />
@@ -132,7 +130,7 @@ const MemberCard: React.FC<MemberCardProps> = ({ image, name, title, description
           <p className="card-role">{title}</p>
         </div>
 
-        {/* Layer 2: Hover view — name at top, description below */}
+        {/* Layer 2 */}
         <div className="hover-layer">
           <h3 className="hover-name">{name}</h3>
           <p className="hover-role">{title}</p>
@@ -190,7 +188,7 @@ const Team = () => {
           position: relative;
           z-index: 2;
           border-radius: calc(1rem - 2px);
-          border: 1px solid rgba(0, 0, 0, 0.08);
+          border: 3px solid rgba(0, 0, 0, 0.08);
           background: white;
           overflow: hidden;
           height: 320px; /* fixed height so layers can overlap cleanly */

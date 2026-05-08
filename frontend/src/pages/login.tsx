@@ -2,13 +2,14 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { EyeIcon, EyeOffIcon } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import LogoOrange from '../components/ui/LogoOrange';
+import logoOrange from '../assets/LogoOrange.svg';
 import LoginOrange from "../assets/LoginOrange.png";
 import Food from "../assets/Food.png"
 import Spices from "../assets/Spices.png"
 import Tomato from "../assets/Tomato.png"
 import { useAuthStore } from '../hooks/auth/useauth';
 import { ACCESS_TOKEN } from '../api/constants';
+import { toast } from 'sonner';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -29,7 +30,7 @@ const Login = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || !password) {
-      window.alert('Please fill in all fields');
+      toast.error('Please fill in all fields');
       return;
     }
     try {
@@ -140,7 +141,7 @@ const Login = () => {
           <div className="w-[460px]">
             <motion.div variants={itemVariants}>
               <Link to="/">
-                <LogoOrange className="cursor-pointer w-8"/>
+                <img src={logoOrange} alt="HapagTech logo" className="cursor-pointer w-8"/>
               </Link>
             </motion.div>
             

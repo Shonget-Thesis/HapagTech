@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import { AnimatePresence, motion } from 'framer-motion';
 import LandingPage from './pages/landing/LandingPage';
 import Home from './pages/Home';
-import Login from './pages/login';
+import Login from './pages/Login';
 import Register from './pages/Register';
 import TeamPage from './pages/TeamPage';
 import PrivacyPolicy from './pages/PrivacyPolicy';
@@ -43,7 +43,6 @@ const AnimatedRoutes = ({ isAuthenticated }: { isAuthenticated: boolean }) => {
 function App() {
   const { isCheckingAuth, isAuthenticated } = useAuthStore();
   
-  // Show loading state while checking authentication
   if (isCheckingAuth) {
     return (
       <div className="h-screen w-screen flex items-center justify-center">
