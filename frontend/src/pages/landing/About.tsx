@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import Carousel from '../../components/ui/Carousel';
 import AnimatedCounter from '../../components/ui/AnimatedCounter';
+import StoryTitle from '../../assets/StoryTitle.png';
 
 const About = () => {
   return (
@@ -18,18 +19,19 @@ const About = () => {
         <motion.div
           className="w-full text-center md:text-left flex flex-col justify-center items-center md:items-start lg:max-w-[560px] lg:mx-0"
         >
-          {/* Animated Heading */}
-          <motion.h2
-            className="text-[3em] uppercase font-bold text-[#2D2D2D]"
-          >
-            We are Kangina.
-          </motion.h2>
-
+        <motion.img
+          src={StoryTitle}
+          alt="Story Title"
+          className="mb-6 md:mb-0 max-h-[12em] w-auto"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        />
           {/* Animated Paragraph */}
           <motion.p
             className="w-full max-w-[58ch] font-light text-lg mb-6 text-[#2D2D2D]/90"
           >
-            Our adventure began in a humble kitchen where we discovered that the true secret ingredient wasn't in the pantry—it was in the playful spirit of every "tarantado" who dared to break the rules. We take pride in transforming everyday ingredients into masterpieces that carry the soul of Filipino cooking, spiced up with a hint of rebellious wit.
+            Sa ating mga hapag-kainan nagsisimula ang mga kwento, mga tawanan, ideya, at koneksyong bumubuo sa bawat komunidad. At HAPAG TECH, we bring together the warmth of traditional Filipino gatherings and the dynamic spirit of modern technology to create experiences that do more than satisfy—they inspire connection, collaboration, and creativity.
           </motion.p>
 
           {/* Animated Statistics Section with Dynamic Counters */}

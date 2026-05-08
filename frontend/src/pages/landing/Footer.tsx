@@ -13,15 +13,15 @@ const Footer = () => {
             <div className="mt-4 space-y-3 text-sm">
               <div className="flex items-center justify-center gap-2 md:justify-start">
                 <Phone className="h-4 w-4 shrink-0" />
-                <span>+63 997 728 9552</span>
+                <span>+63 987 654 3210</span>
               </div>
               <div className="flex items-center justify-center gap-2 md:justify-start">
                 <Mail className="h-4 w-4 shrink-0" />
-                <span>kangina.ph@domain.com</span>
+                <span>hapagtech.ph@domain.com</span>
               </div>
               <div className="flex items-start justify-center gap-2 md:justify-start">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0" />
-                <span>45th 21st Bldg. 02 St. Nazareth, CDO</span>
+                <span>123 Ken Street, Barangay 456, Cagayan de Oro City</span>
               </div>
             </div>
           </div>
@@ -62,7 +62,7 @@ const Footer = () => {
           </div>
 
           <div className="md:text-right">
-            <p className="text-m text-[#2D2D2D]/85">© 2025 — 2026 Kangina. All rights reserved.</p>
+            <p className="text-m text-[#2D2D2D]/85">© 2025 — 2026 HapagTech. All rights reserved.</p>
           </div>
         </div>
       </div>

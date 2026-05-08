@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 
 const Home = () => {
   useEffect(() => {
-    const target = sessionStorage.getItem('kangina-scroll-target')
+    const target = sessionStorage.getItem('hapagtech-scroll-target')
     if (!target) return
 
     const element = document.getElementById(target)
@@ -21,7 +21,7 @@ const Home = () => {
       top: elementPosition + window.pageYOffset - headerOffset,
       behavior: 'smooth',
     })
-    sessionStorage.removeItem('kangina-scroll-target')
+    sessionStorage.removeItem('hapagtech-scroll-target')
   }, [])
 
   return (

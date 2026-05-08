@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
-const STORAGE_KEY = 'kangina_cookie_consent'
+const STORAGE_KEY = 'hapagtech_cookie_consent'
 
 const CookieConsent: React.FC = () => {
   const [accepted, setAccepted] = useState<boolean | null>(null)

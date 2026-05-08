@@ -171,7 +171,7 @@ export const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 1 }}
         >
-          The wildest culinary adventure crafted by the one and only Cooking ng ina mo! Be ready as you're about to embark on a flavor trip that'll have you shouting "Kangina, kain na!"
+        From the warmth of Filipino salu-salo to the pulse of modern technology, HAPAG TECH creates experiences worth sharing at every hapag-kainan.
         </motion.p>
 
         <motion.div

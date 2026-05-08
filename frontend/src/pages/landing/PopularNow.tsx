@@ -201,43 +201,40 @@ const PopularNow: React.FC = () => {
         </div>
 
         <div className="relative">
+          {/* Floating arrows outside cards */}
           <button
-            type="button"
             onClick={prevSlide}
-            className="absolute left-2 top-1/2 z-10 -translate-y-1/2 text-[#2D2D2D] opacity-90 hover:opacity-100 transition-opacity"
-            aria-label="Previous slide"
+            className="absolute -left-12 top-1/2 -translate-y-1/2 z-10 text-[#2D2D2D] hover:opacity-100 transition-opacity"
           >
-            <ChevronLeft size={32} />
+            <ChevronLeft size={40} />
           </button>
           <button
-            type="button"
             onClick={nextSlide}
-            className="absolute right-2 top-1/2 z-10 -translate-y-1/2 text-[#2D2D2D] opacity-90 hover:opacity-100 transition-opacity"
-            aria-label="Next slide"
+            className="absolute -right-12 top-1/2 -translate-y-1/2 z-10 text-[#2D2D2D] hover:opacity-100 transition-opacity"
           >
-            <ChevronRight size={32} />
+            <ChevronRight size={40} />
           </button>
-          <div className="overflow-hidden">
-            <div
-              ref={slideContainerRef}
-              className="flex transition-transform duration-700 ease-in-out"
-              style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-              onMouseEnter={stopAutoSlide}
-              onMouseLeave={startAutoSlide}
-            >
-              {slides.map((group, groupIndex) => (
-                <div key={groupIndex} className="flex w-full flex-shrink-0">
-                  {group.map((product, index) => (
-                    <div key={product.id} className="w-1/4 px-2 sm:w-1/2 md:w-1/4">
-                      <ItemCard product={product} index={index} />
-                    </div>
-                  ))}
-                </div>
-              ))}
-            </div>
+
+          <div
+            ref={slideContainerRef}
+            className="flex transition-transform duration-700 ease-in-out"
+            style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+            onMouseEnter={stopAutoSlide}
+            onMouseLeave={startAutoSlide}
+          >
+            {slides.map((group, groupIndex) => (
+              <div key={groupIndex} className="flex w-full flex-shrink-0">
+                {group.map((product, index) => (
+                  <div key={product.id} className="w-1/4 px-2 sm:w-1/2 md:w-1/4">
+                    <ItemCard product={product} index={index} />
+                  </div>
+                ))}
+              </div>
+            ))}
           </div>
         </div>
 
+        {/* Optional indicator dots */}
         <div className="mt-6 flex justify-center space-x-2">
           {chunks.map((_, index) => {
             // actual index mapping
@@ -264,7 +261,7 @@ const PopularNow: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.5, ease: 'easeOut' }}
+          transition={{ duration: 1, ease: 'easeOut' }}
         >
           Fresh picks from the kitchen
         </motion.p>
