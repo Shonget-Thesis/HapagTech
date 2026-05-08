@@ -15,7 +15,7 @@ This file describes how to run the HapagTech system locally with both backend an
 1. Open a terminal and change to the backend folder:
 
 ```powershell
-cd d:\Roxanne\Codes\HapagTech\backend
+cd backend
 ```
 
 2. Create a Python virtual environment:
@@ -75,7 +75,7 @@ The backend API will be available at:
 1. Open a terminal and change to the frontend folder:
 
 ```powershell
-cd d:\Roxanne\Codes\HapagTech\frontend
+cd frontend
 ```
 
 2. Install dependencies:
@@ -116,7 +116,7 @@ The frontend app will usually open at:
 
 ```powershell
 # Backend
-cd d:\Roxanne\Codes\HapagTech\backend
+cd backend
 python -m venv .venv
 .venv\Scripts\Activate.ps1
 pip install -r requirements.txt
@@ -124,7 +124,7 @@ python manage.py migrate
 python manage.py runserver 8000
 
 # Frontend
-cd d:\Roxanne\Codes\HapagTech\frontend
+cd frontend
 npm install
 npm run dev
 ```
