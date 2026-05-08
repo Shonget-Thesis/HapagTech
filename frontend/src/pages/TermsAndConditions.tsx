@@ -1,25 +1,31 @@
+import { motion } from "framer-motion";
 import Header from "../components/Header";
 import Footer from "./landing/Footer";
 import { useEffect } from "react";
 
 const TermsAndConditions = () => {
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }, [])
+    useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "auto" });
+  }, []);
 
   return (
-    <div className="page-shell bg-white text-[#FF5300] min-h-screen">
-      <Header />
+    <motion.div
+      className="page-shell w-full max-w mx-auto bg-white text-[#FF5300]"
+      initial={{ opacity: 0 }}    
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.8, ease: "easeInOut" }}
+    >
+    <Header />
       <main className="mx-auto max-w-4xl px-6 py-24 md:py-28">
             <div className="mb-8">
-              <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#FF5300]">Legal</p>
-              <h1 className="mt-3 text-4xl font-extrabold">Terms & Conditions</h1>
+              <h1 className="mt-3 text-4xl font-extrabold text-center">Terms & Conditions</h1>
             </div>
-            <div className="rounded-3xl border border-[#FF5300]/10 bg-white p-6 shadow-sm md:p-8 space-y-5 leading-7 text-[#525252]">
-              <p className="text-sm font-semibold text-[#FF5300]\">Last updated: May 7, 2026</p>
+            <div className="rounded-3xl border border-[#FFAE00]/50 bg-white p-6 shadow-md md:p-8 space-y-5 leading-7 text-[#525252]">
+              <p className="text-sm font-semibold text-[#2D2D2D]">Last updated: May 7, 2026</p>
               <section>
-                <h3 className="mb-2 text-lg font-semibold text-[#FF5300]\">Acceptance of Terms</h3>
-                <p>By using Kangina's website and services, you agree to these Terms and any updates. Please read them carefully.</p>
+                <h3 className="mb-2 text-lg font-semibold text-[#FF5300]">Acceptance of Terms</h3>
+                <p>By using HapagTech's website and services, you agree to these Terms and any updates. Please read them carefully.</p>
               </section>
               <section>
                 <h3 className="mb-2 text-lg font-semibold text-[#FF5300]">Services</h3>
@@ -35,7 +41,7 @@ const TermsAndConditions = () => {
               </section>
               <section>
                 <h3 className="mb-2 text-lg font-semibold text-[#FF5300]">Limitation of Liability</h3>
-                <p>To the fullest extent permitted by law, Kangina is not liable for indirect or consequential damages arising from use of the service.</p>
+                <p>To the fullest extent permitted by law, HapagTech is not liable for indirect or consequential damages arising from use of the service.</p>
               </section>
               <section>
                 <h3 className="mb-2 text-lg font-semibold text-[#FF5300]">Governing Law</h3>
@@ -43,12 +49,12 @@ const TermsAndConditions = () => {
               </section>
               <section>
                 <h3 className="mb-2 text-lg font-semibold text-[#FF5300]">Contact</h3>
-                <p>Questions about these Terms: kangina.ph@domain.com</p>
+                <p>Questions about these Terms: hapagtech.ph@domain.com</p>
               </section>
             </div>
       </main>
       <Footer />
-    </div>
+    </motion.div>
   )
 }
 

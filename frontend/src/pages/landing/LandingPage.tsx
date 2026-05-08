@@ -27,8 +27,7 @@ const Home = () => {
   return (
     <div className="w-full max-w mx-auto">
       <Header />
-      
-      {/* Section IDs match the ones used in the Header component */}
+
       <motion.div
         id="home"
         style={{ paddingTop: '18px' }}
