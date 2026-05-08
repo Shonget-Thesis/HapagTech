@@ -5,6 +5,7 @@ import About from "./About";
 import Services from "./Services";
 import Footer from "./Footer";
 import { useEffect } from "react";
+import { motion } from "framer-motion";
 
 const Home = () => {
   useEffect(() => {
@@ -28,23 +29,55 @@ const Home = () => {
       <Header />
       
       {/* Section IDs match the ones used in the Header component */}
-      <div id="home" style={{ paddingTop: '18px' }}>
+      <motion.div
+        id="home"
+        style={{ paddingTop: '18px' }}
+        initial={{ opacity: 0, y: 50, filter: 'blur(12px)' }}
+        whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 1.2, ease: 'easeOut' }}
+      >
         <Hero />
-      </div>
+      </motion.div>
 
-      <div id="popular">
+      <motion.div
+        id="popular"
+        initial={{ opacity: 0, y: 50, filter: 'blur(12px)' }}
+        whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 1.2, ease: 'easeOut' }}
+      >
         <PopularNow />
-      </div>
+      </motion.div>
 
-      <div id="about">
+      <motion.div
+        id="about"
+        initial={{ opacity: 0, y: 50, filter: 'blur(12px)' }}
+        whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 1.2, ease: 'easeOut' }}
+      >
         <About />
-      </div>
+      </motion.div>
 
-      <div id="services">
+      <motion.div
+        id="services"
+        initial={{ opacity: 0, y: 50, filter: 'blur(12px)' }}
+        whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 1.2, ease: 'easeOut' }}
+      >
         <Services />
-      </div>
+      </motion.div>
       
-      <Footer />
+      <motion.div
+        initial={{ opacity: 0, y: 50, filter: 'blur(12px)' }}
+        whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 1.2, ease: 'easeOut' }}
+      >
+        <Footer />
+      </motion.div>
     </div>
   );
 };

@@ -3,8 +3,10 @@ import { useState, useEffect } from 'react';
 import { EyeIcon, EyeOffIcon } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import LogoOrange from '../components/ui/LogoOrange';
-import FoodRed1 from "../assets/FoodRed1.png";
-import Food1 from "../assets/Food1.png"
+import LoginOrange from "../assets/LoginOrange.png";
+import Food from "../assets/Food.png"
+import Spices from "../assets/Spices.png"
+import Tomato from "../assets/Tomato.png"
 import { useAuthStore } from '../hooks/auth/useauth';
 import { ACCESS_TOKEN } from '../api/constants';
 
@@ -43,26 +45,50 @@ const Login = () => {
   const handleSignUpClick = (e: React.MouseEvent) => {
     e.preventDefault();
     setIsExiting(true);
-   
+
     setTimeout(() => {
       navigate('/register');
     }, 300);
   };
 
+  const handlePrivacyClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    navigate('/privacy');
+  };
+
+  const handleTermsClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    navigate('/terms');
+  };
+
   const Footer = () => {
     return (
-      <footer className="w-full text-left py-4 text-sm text-gray-600 border-t mt-12">
-        <p>&copy; 2025 — 2026</p>
-        <p>
-          <a href="#" className="text-gray-600 hover:underline">
-            Privacy and Terms
-          </a>
-        </p>
+      <footer className="w-full py-4 text-sm text-[#6b6b6b] border-t mt-12">
+        <div className="flex items-center justify-between gap-4">
+          <p className="text-[#6b6b6b]">&copy; 2025 — 2026</p>
+          <div className="flex items-center gap-4">
+            <button
+              type="button"
+              onClick={handlePrivacyClick}
+              className="text-[#FF5300] hover:underline"
+            >
+              Privacy
+            </button>
+            <span className="text-[#6b6b6b]">|</span>
+            <button
+              type="button"
+              onClick={handleTermsClick}
+              className="text-[#FF5300] hover:underline"
+            >
+              Terms
+            </button>
+          </div>
+        </div>
       </footer>
     );
   };
 
-  // Animation variants for staggered animations
+  // Animation
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -98,7 +124,7 @@ const Login = () => {
   return (
     <AnimatePresence>
       <motion.div
-        className="h-screen flex w-full"
+        className="h-screen flex w-full overflow-hidden"
         initial={{ opacity: 1 }}
         animate={{ opacity: isExiting ? 0 : 1 }}
         exit={{ opacity: 0 }}
@@ -119,7 +145,7 @@ const Login = () => {
             </motion.div>
             
             <motion.h2
-              className="text-5xl font-extrabold text-[#ed3f25] mb-4 mt-4"
+              className="text-5xl font-extrabold text-[#FF5300] mb-4 mt-4"
               variants={itemVariants}
             >
               Log in.
@@ -142,7 +168,7 @@ const Login = () => {
                 <input
                   type="email"
                   id="email"
-                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-400"
+                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF5300]/60"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
@@ -155,7 +181,7 @@ const Login = () => {
                 <input
                   type={showPassword ? "text" : "password"}
                   id="password"
-                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-400 pr-10"
+                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF5300]/60 pr-10"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
@@ -172,7 +198,7 @@ const Login = () => {
              
               <motion.button
                 type="submit"
-                className="w-full py-3 bg-red-500 text-white rounded-lg hover:bg-red-600 transition"
+                className="w-full py-3 bg-[#FF5300] text-white rounded-lg hover:bg-[#e64500] transition"
                 disabled={isLoading}
                 variants={itemVariants}
                 whileHover={{ scale: 1.02 }}
@@ -184,7 +210,7 @@ const Login = () => {
            
             {error && (
               <motion.p
-                className="mt-2 text-red-500"
+                className="mt-2 text-[#FF5300]"
                 variants={itemVariants}
                 initial="hidden"
                 animate="visible"
@@ -200,7 +226,7 @@ const Login = () => {
               New User? {' '}
               <motion.a
                 href="/register"
-                className="text-[#ed3f25] inline-block"
+                className="text-[#FF5300] inline-block border-b border-transparent hover:border-[#FF5300] transition-all duration-200"
                 onClick={handleSignUpClick}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -217,7 +243,7 @@ const Login = () => {
 
         {/* Right side with image */}
         <motion.div
-          className="w-1/2 relative hidden md:block"
+          className="w-1/2 relative hidden md:block h-screen overflow-visible"
           initial={{ opacity: 0, x: 100 }}
           animate={{ opacity: isExiting ? 0 : 1, x: isExiting ? 100 : 0 }}
           transition={{
@@ -226,17 +252,35 @@ const Login = () => {
             delay: isExiting ? 0 : 0.3
           }}
         >
+          {/* Orange background */}
           <img 
-            src={FoodRed1} 
-            alt="Food illustration" 
-            className="absolute inset-0 h-full w-full object-cover"
-            style={{ objectPosition: "50% 50%" }}
+            src={LoginOrange} 
+            alt="Orange background illustration" 
+            className="absolute top-0 bottom-0 right-[-26%] h-full w-[130%] object-cover"
           />
+
+          {/* Tomato decoration */}
+          <img 
+            src={Tomato} 
+            alt="Tomato illustration" 
+            className="absolute -top-6 right-8 w-32 lg:w-72"
+          />
+
+          {/* Spices decoration */}
+          <img 
+            src={Spices} 
+            alt="Spices illustration" 
+            className="absolute -bottom-14 right-10 w-28 lg:w-64"
+          />
+
+          {/* Food bowl */}
           <motion.img
-            src={Food1}
+            src={Food}
             alt="Food overlay"
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/4 w-4/5 hidden lg:block"
-            style={{ translateX: "-50%", translateY: "-50%" }}
+            className="absolute top-1/2 left-[30%] -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-[70%] z-20"
+            initial={{ scale: 0.95, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 1, ease: "easeOut", delay: 0.5 }}
           />
         </motion.div>
       </motion.div>

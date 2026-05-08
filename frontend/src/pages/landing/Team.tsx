@@ -1,6 +1,6 @@
-import Mark from "../../assets/Mark.png"
-import Roxanne from "../../assets/Roxanne.png"
-import Rhenel from "../../assets/Rhenel.png"
+import Mark from "../../assets/Team/Mark.png"
+import Roxanne from "../../assets/Team/Roxanne.png"
+import Rhenel from "../../assets/Team/Rhenel.png"
 
 interface MemberCardProps {
   image: string; 

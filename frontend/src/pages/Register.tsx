@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { EyeIcon, EyeOffIcon } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import FoodBlue1 from '../assets/FoodBlue1.png';
-import Food1 from '../assets/Food1.png';
+import Food1 from '../assets/Food.png';
 import LogoBlue from '../components/ui/LogoBlue';
 import { useAuthStore } from '../hooks/auth/useauth';
 import { toast } from 'sonner';

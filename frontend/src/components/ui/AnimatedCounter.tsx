@@ -9,7 +9,7 @@ interface AnimatedCounterProps {
 
 const AnimatedCounter = ({ targetValue, label, delay }: AnimatedCounterProps) => {
   const [count, setCount] = useState(0);
-  const duration = 2000; // Duration in milliseconds
+  const duration = 4000; // Duration in milliseconds - slowed down for premium feel
   const formatCount = (value: number) => new Intl.NumberFormat('en-PH').format(value)
   
   useEffect(() => {
@@ -52,7 +52,7 @@ const AnimatedCounter = ({ targetValue, label, delay }: AnimatedCounterProps) =>
       initial={{ opacity: 0, scale: 0.9, y: 10 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}
-      transition={{ delay: delay / 1000, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ delay: delay / 1000, duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
     >
       <span className="text-3xl font-bold tracking-tight text-[#FF5300]">
         {formatCount(count)}
@@ -62,7 +62,7 @@ const AnimatedCounter = ({ targetValue, label, delay }: AnimatedCounterProps) =>
         initial={{ opacity: 0, y: 8 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ delay: delay / 1000 + 0.1, duration: 0.5 }}
+        transition={{ delay: delay / 1000 + 0.1, duration: 1.0 }}
       >
         {label}
       </motion.span>

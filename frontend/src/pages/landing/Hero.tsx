@@ -196,11 +196,11 @@ export const Hero = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, ease: "easeOut" }}
       >
-        <img src={FoodHp} alt="Background" className="w-full h-full object-cover" />
+        <img src={FoodHp} alt="Background" className="absolute top-0 left-1/2 w-full h-full object-cover transform -translate-x-1/4" />
         <motion.img
           src={Food}
           alt="Food Dish"
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/4 w-4/5"
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/4 w-[70%] max-w-[80%]"
           style={{ translateX: "-50%", translateY: "-50%" }}
           initial={{ rotate: 0 }}
           animate={{ rotate: 360 }}
