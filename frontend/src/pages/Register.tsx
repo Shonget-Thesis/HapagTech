@@ -2,9 +2,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { EyeIcon, EyeOffIcon } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import FoodBlue1 from '../assets/FoodBlue1.png';
+import SignupYellow from '../assets/SignupYellow.png';
 import Food1 from '../assets/Food.png';
-import LogoBlue from '../components/ui/LogoBlue';
+import logoYellow from '../assets/LogoYellow.svg';
+import Tomato from '../assets/Tomato.png';
+import Spices from '../assets/Spices.png';
 import { useAuthStore } from '../hooks/auth/useauth';
 import { toast } from 'sonner';
 
@@ -84,7 +86,7 @@ const Register = () => {
   return (
     <AnimatePresence>
       <motion.div
-        className="h-screen flex w-full"
+        className="h-screen flex w-full overflow-hidden"
         initial={{ opacity: 1 }}
         animate={{ opacity: isExiting ? 0 : 1 }}
         exit={{ opacity: 0 }}
@@ -92,7 +94,7 @@ const Register = () => {
       >
         {/* Left side with images */}
         <motion.div
-          className="w-1/2 relative hidden md:block"
+          className="w-1/2 relative hidden md:block h-screen overflow-visible"
           initial={{ opacity: 0, x: -100 }}
           animate={{ opacity: isExiting ? 0 : 1, x: isExiting ? -100 : 0 }}
           transition={{
@@ -101,17 +103,36 @@ const Register = () => {
             delay: isExiting ? 0 : 0.3
           }}
         >
+          {/* Yellow background */}
           <img 
-            src={FoodBlue1} 
-            alt="Food illustration" 
-            className="absolute inset-0 h-full w-full object-cover"
+            src={SignupYellow} 
+            alt="Yellow signup background"
+            className="absolute top-0 bottom-0 left-[-26%] h-full w-[130%] object-cover"
             style={{ objectPosition: "50% 50%" }}
           />
+
+          {/* Tomato decoration - top left */}
+          <img 
+            src={Tomato} 
+            alt="Tomato illustration" 
+            className="absolute -top-8 left-4 w-32 lg:w-72 z-10"
+          />
+
+          {/* Spices decoration - bottom left */}
+          <img 
+            src={Spices} 
+            alt="Spices illustration" 
+            className="absolute -bottom-14 left-10 w-28 lg:w-64 z-10"
+          />
+
+          {/* Food bowl - overflowing to the right */}
           <motion.img
             src={Food1}
             alt="Food overlay"
-            className="absolute top-1/2 left-4/5 transform -translate-x-1/4 w-4/5 hidden lg:block"
-            style={{ translateX: "-50%", translateY: "-50%" }}
+            className="absolute top-1/2 right-[30%] translate-x-1/2 -translate-y-1/2 w-[90%] max-w-[70%] z-20"
+            initial={{ scale: 0.95, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 1, ease: "easeOut", delay: 0.5 }}
           />
         </motion.div>
 
@@ -125,12 +146,12 @@ const Register = () => {
           <div className="w-[460px]">
             <motion.div variants={itemVariants}>
               <Link to="/">
-                <LogoBlue className="cursor-pointer w-8"/>
+                <img src={logoYellow} alt="HapagTech logo" className="cursor-pointer w-8" />
               </Link>
             </motion.div>
            
             <motion.h2
-              className="text-5xl font-extrabold text-[#32347c] mb-4 mt-4"
+              className="text-5xl font-extrabold text-[#FFAE00] mb-4 mt-4"
               variants={itemVariants}
             >
               Create Account.
@@ -156,20 +177,7 @@ const Register = () => {
                   placeholder="Full Name"
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
-                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-                  required
-                />
-              </motion.div>
-             
-              <motion.div variants={itemVariants}>
-                <label htmlFor="username" className="block text-base font-medium mb-0.5">Username</label>
-                <input
-                  type="text"
-                  id="username"
-                  placeholder="Username"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FFAE00]/60"
                   required
                 />
               </motion.div>
@@ -182,7 +190,20 @@ const Register = () => {
                   placeholder="Email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FFAE00]/60"
+                  required
+                />
+              </motion.div>
+              
+              <motion.div variants={itemVariants}>
+                <label htmlFor="username" className="block text-base font-medium mb-0.5">Username</label>
+                <input
+                  type="text"
+                  id="username"
+                  placeholder="Username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FFAE00]/60"
                   required
                 />
               </motion.div>
@@ -195,7 +216,7 @@ const Register = () => {
                   placeholder="Password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 pr-10"
+                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FFAE00]/60 pr-10"
                   required
                 />
                 <button
@@ -220,7 +241,7 @@ const Register = () => {
              
               <motion.button
                 type="submit"
-                className="w-full py-3 bg-blue-800 text-white rounded-lg hover:bg-blue-900 transition"
+                className="w-full py-3 bg-[#FFAE00] text-[#2D2D2D] rounded-lg hover:bg-[#e69800] transition"
                 disabled={isLoading}
                 variants={itemVariants}
                 whileHover={{ scale: 1.02 }}
@@ -237,7 +258,7 @@ const Register = () => {
               Already have an account? {' '}
               <motion.a
                 href="/login"
-                className="text-blue-800 inline-block"
+                className="text-[#FFAE00] inline-block border-b border-transparent hover:border-[#FFAE00] transition-all duration-200"
                 onClick={handleLoginClick}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
