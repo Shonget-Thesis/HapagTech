@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useAuthStore } from '../../hooks/auth/useauth';
 import useAppStore from '../../store/HomeUserStore';
-import LogoBlue from '../../components/ui/LogoBlue';
+import LogoBlue from '../ui/LogoYellow';
 import { X, Menu } from 'lucide-react';
 
 const LeftSidebar: React.FC = () => {

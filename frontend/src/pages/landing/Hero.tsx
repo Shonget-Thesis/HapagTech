@@ -6,7 +6,7 @@ import Wordmark from '../../assets/Wordmark.png'
 
 export const Hero = () => {
   return (
-    <div className="flex flex-col md:flex-row w-full h-auto md:h-screen mt-5 md:m-0">
+    <div className="flex flex-col md:flex-row w-full h-auto md:h-screen mt-5 md:m-0 overflow-hidden">
       <style>{`
         @property --angle {
           syntax: '<angle>';
