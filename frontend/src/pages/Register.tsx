@@ -33,10 +33,10 @@ const Register = () => {
         full_name: fullName
       });
       
-      toast.success('Registration successful! Please login to continue.');
+      toast.success('Registration successful! Welcome to HapagTech.');
       setIsExiting(true);
       setTimeout(() => {
-        navigate('/login', { replace: true });
+        navigate('/home', { replace: true });
       }, 300);
     } catch (err) {
       console.error("Registration failed:", err);

@@ -27,12 +27,11 @@ const Home = () => {
   return (
     <div className="w-full max-w mx-auto">
       <Header />
-
       <motion.div
         id="home"
         style={{ paddingTop: '18px' }}
-        initial={{ opacity: 0, y: 50, filter: 'blur(12px)' }}
-        whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 1.2, ease: 'easeOut' }}
       >
@@ -41,8 +40,8 @@ const Home = () => {
 
       <motion.div
         id="popular"
-        initial={{ opacity: 0, y: 50, filter: 'blur(12px)' }}
-        whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 1.2, ease: 'easeOut' }}
       >
@@ -51,8 +50,8 @@ const Home = () => {
 
       <motion.div
         id="about"
-        initial={{ opacity: 0, y: 50, filter: 'blur(12px)' }}
-        whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 1.2, ease: 'easeOut' }}
       >
@@ -61,8 +60,8 @@ const Home = () => {
 
       <motion.div
         id="services"
-        initial={{ opacity: 0, y: 50, filter: 'blur(12px)' }}
-        whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 1.2, ease: 'easeOut' }}
       >
@@ -70,8 +69,8 @@ const Home = () => {
       </motion.div>
       
       <motion.div
-        initial={{ opacity: 0, y: 50, filter: 'blur(12px)' }}
-        whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 1.2, ease: 'easeOut' }}
       >
