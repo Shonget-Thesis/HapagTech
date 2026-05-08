@@ -40,7 +40,7 @@ const ItemCard: React.FC<{ product: Product; index: number }> = ({ product, inde
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
       whileHover={{ y: -8, scale: 1.02 }}
-      className="group relative overflow-hidden rounded-xl border border-black/5 bg-white shadow-lg transition-transform duration-300 w-full"
+      className="group relative overflow-hidden rounded-xl border border-black/5 bg-white shadow-lg transition-transform duration-300 w-full cursor-pointer"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -86,8 +86,6 @@ const ItemCard: React.FC<{ product: Product; index: number }> = ({ product, inde
     </motion.article>
   )
 }
-
-// Helper: chunk into groups of 4
 const chunkProducts = (arr: Product[], size: number) => {
   const chunks: Product[][] = []
   for (let i = 0; i < arr.length; i += size) {
@@ -97,7 +95,7 @@ const chunkProducts = (arr: Product[], size: number) => {
 }
 
 const PopularNow: React.FC = () => {
-  // Dummy products for local testing
+  // Placeholder products
   const [products] = useState<Product[]>([
     { id: 1, name: 'Pizza', price: 250, image_url: 'https://via.placeholder.com/300x200' },
     { id: 2, name: 'Burger', price: 150, image_url: 'https://via.placeholder.com/300x200' },
@@ -110,7 +108,7 @@ const PopularNow: React.FC = () => {
   ])
 
   const chunks = chunkProducts(products, 4)
-  const [currentIndex, setCurrentIndex] = useState(1) // start at 1 for loop effect
+  const [currentIndex, setCurrentIndex] = useState(1)
   const [slides, setSlides] = useState<Product[][]>([])
   const slideContainerRef = useRef<HTMLDivElement | null>(null)
   const timerRef = useRef<number | null>(null)
@@ -201,20 +199,6 @@ const PopularNow: React.FC = () => {
         </div>
 
         <div className="relative">
-          {/* Floating arrows outside cards */}
-          <button
-            onClick={prevSlide}
-            className="absolute -left-12 top-1/2 -translate-y-1/2 z-10 text-[#2D2D2D] hover:opacity-100 transition-opacity"
-          >
-            <ChevronLeft size={40} />
-          </button>
-          <button
-            onClick={nextSlide}
-            className="absolute -right-12 top-1/2 -translate-y-1/2 z-10 text-[#2D2D2D] hover:opacity-100 transition-opacity"
-          >
-            <ChevronRight size={40} />
-          </button>
-
           <div
             ref={slideContainerRef}
             className="flex transition-transform duration-700 ease-in-out"
@@ -234,7 +218,6 @@ const PopularNow: React.FC = () => {
           </div>
         </div>
 
-        {/* Optional indicator dots */}
         <div className="mt-6 flex justify-center space-x-2">
           {chunks.map((_, index) => {
             // actual index mapping
