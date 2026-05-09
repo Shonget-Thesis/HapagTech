@@ -5,6 +5,10 @@ import { ACCESS_TOKEN, REFRESH_TOKEN } from "../api/constants";
 // Read backend URL from environment variable
 const API_URL = import.meta.env.VITE_API_URL;
 
+if (!API_URL) {
+  console.error('VITE_API_URL is not defined. Make sure frontend/.env exists and the Vite dev server has been restarted.');
+}
+
 const api = axios.create({
   baseURL: API_URL,
   headers: {

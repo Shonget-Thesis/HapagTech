@@ -20,8 +20,8 @@ export const useCart = () => {
     isLoading,
     totalItems,
     totalPrice,
-    addItem: (productId: number, quantity: number) => addItemMutation.mutate({ productId, quantity }),
-    removeItem: (productId: number) => removeItemMutation.mutate(productId),
-    updateQuantity: (productId: number, quantity: number) => updateQuantityMutation.mutate({ productId, quantity })
+    addItem: async (productId: number, quantity: number) => addItemMutation.mutateAsync({ productId, quantity }),
+    removeItem: async (productId: number) => removeItemMutation.mutateAsync(productId),
+    updateQuantity: async (productId: number, quantity: number) => updateQuantityMutation.mutateAsync({ productId, quantity })
   };
 };

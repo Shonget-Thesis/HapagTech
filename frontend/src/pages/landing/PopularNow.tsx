@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 type Product = {
   id: number
@@ -170,20 +169,6 @@ const PopularNow: React.FC = () => {
     if (timerRef.current !== null) {
       clearInterval(timerRef.current)
       timerRef.current = null
-    }
-  }
-
-  const nextSlide = () => {
-    if (!isTransitioning.current) {
-      isTransitioning.current = true
-      setCurrentIndex(prev => prev + 1)
-    }
-  }
-
-  const prevSlide = () => {
-    if (!isTransitioning.current) {
-      isTransitioning.current = true
-      setCurrentIndex(prev => prev - 1)
     }
   }
 

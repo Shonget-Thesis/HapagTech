@@ -74,11 +74,11 @@ export const CategorySelector: React.FC<CategorySelectorProps> = ({
               key={category.value}
               onClick={() => onCategorySelect(category.value)}
               className={`flex flex-col items-center md:items-start p-2 md:p-4 w-24 h-24 md:w-32 md:h-32 
-                flex-shrink-0 rounded-lg shadow-lg transition-all snap-center
+                flex-shrink-0 rounded-lg shadow-lg transition-all snap-center cursor-pointer hover:shadow-xl
                 ${style.bgColor} ${style.textColor}
                 ${selectedCategory === category.value
                   ? `border-2 ${style.borderColor}`
-                  : 'border border-gray-200'}`}
+                  : 'border border-gray-200 hover:border-gray-300'}`}
             >
               <img
                 src={style.image}
