@@ -22,12 +22,12 @@ const CookieConsent: React.FC = () => {
     <div className="fixed bottom-6 right-6 z-50 w-full max-w-xl px-4">
       <div className="bg-[#F8F0D8]/95 backdrop-blur-sm border border-[#32347C]/10 rounded-xl p-4 shadow-lg flex items-center gap-4 text-[#32347C]">
         <div className="flex-1">
-          <p className="text-sm">We use cookies to improve your experience. By continuing, you agree to our <Link to="/privacy" className="text-[#FF5300] underline underline-offset-4">Privacy Policy</Link> and <Link to="/terms" className="text-[#FF5300] underline underline-offset-4">Terms</Link>.</p>
+          <p className="text-sm">We use cookies to improve your experience. By continuing, you agree to our <Link to="/privacy" className="cursor-pointer text-[#FF5300] underline underline-offset-4">Privacy Policy</Link> and <Link to="/terms" className="cursor-pointer text-[#FF5300] underline underline-offset-4">Terms</Link>.</p>
         </div>
         <div className="flex-shrink-0">
           <button
             onClick={accept}
-            className="bg-[#FF5300] text-white px-4 py-2 rounded-full font-semibold transform transition-all duration-300 hover:scale-105 active:translate-x-1"
+            className="cursor-pointer bg-[#FF5300] text-white px-4 py-2 rounded-full font-semibold transform transition-all duration-300 hover:scale-105 active:translate-x-1"
           >
             Accept
           </button>

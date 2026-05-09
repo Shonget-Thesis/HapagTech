@@ -26,7 +26,7 @@ export const CategorySelector: React.FC<CategorySelectorProps> = ({
 }) => {
   if (isLoading) {
     return (
-      <div className="mb-6 flex justify-center gap-2 overflow-x-auto px-2">
+      <div className="mb-6 flex justify-center gap-2 overflow-x-auto scrollbar-hidden px-2">
         {[1, 2, 3, 4].map(i => (
           <div key={i} className="h-24 w-24 md:h-32 md:w-32 flex-shrink-0 rounded-lg bg-gray-200 animate-pulse"></div>
         ))}
@@ -53,7 +53,7 @@ export const CategorySelector: React.FC<CategorySelectorProps> = ({
 
   return (
     <div className="mb-6 w-full">
-      <div className="flex justify-start md:justify-center gap-2 md:gap-3 overflow-x-auto py-2 px-2 md:px-0 snap-x">
+      <div className="flex justify-start md:justify-center gap-2 md:gap-3 overflow-x-auto scrollbar-hidden py-2 px-2 md:px-0 snap-x">
         {sortedCategories.map((category) => {
           const style = categoryStyles[category.value.toUpperCase()] || {
             image: '/images/default.jpg',

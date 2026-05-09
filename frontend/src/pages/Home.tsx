@@ -34,7 +34,7 @@ const Home: React.FC = () => {
     <div className="flex h-screen overflow-hidden">
       <LeftSidebar />
 
-      <div className="flex-1 overflow-y-auto relative pl-22">
+      <div className="flex-1 overflow-y-auto scrollbar-hidden relative pl-22">
         <div className="bg-gray-50 min-h-screen px-6 py-6 sm:px-8 sm:py-8 md:px-10 md:py-8">
           {activeSection === 'profile' ? (
             <UserProfile />

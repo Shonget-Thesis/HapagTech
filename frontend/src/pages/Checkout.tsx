@@ -205,7 +205,7 @@ const Checkout: React.FC = () => {
             </div>
 
             {/* Scrollable cart list */}
-            <div className="xl:flex-1 overflow-y-auto no-scroll px-6 space-y-3 xl:min-h-0 pb-3">
+            <div className="xl:flex-1 overflow-y-auto scrollbar-hidden px-6 space-y-3 xl:min-h-0 pb-3">
               {cartItems.length === 0 ? (
                 <div className="rounded-2xl border border-dashed border-[#FFAE00]/35 bg-white/50 p-8 text-center">
                   <p className="text-base font-semibold text-[#2D2D2D]">Your cart is empty</p>
@@ -246,7 +246,7 @@ const Checkout: React.FC = () => {
           </section>
 
           {/* ══ RIGHT: Options + CTA ══ */}
-          <aside className="flex flex-col gap-4 xl:overflow-y-auto no-scroll xl:min-h-0">
+          <aside className="flex flex-col gap-4 xl:overflow-y-auto scrollbar-hidden xl:min-h-0">
 
             {/* Delivery address */}
             <div className="rounded-[1.75rem] border border-[#FFAE00]/18 bg-[#F3E8CC] px-6 py-5 card-shadow flex-shrink-0">

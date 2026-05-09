@@ -253,7 +253,7 @@ const RightSidebar = () => {
                             {/* Collapse arrow — same arrow style, points right to collapse */}
                             <button
                                 onClick={() => setIsCollapsed(true)}
-                                className="ml-auto flex items-center gap-1.5 text-[#FF5300] text-sm font-semibold hover:opacity-70 transition-opacity"
+                                className="ml-auto flex cursor-pointer items-center gap-1.5 text-[#FF5300] text-sm font-semibold hover:opacity-70 transition-opacity"
                             >
                                 <span>Collapse</span>
                                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -270,7 +270,7 @@ const RightSidebar = () => {
                         {/* Cart items */}
                         <div className="flex-grow flex flex-col min-h-0">
                             <h3 className="text-[#2D2D2D] mb-4 font-normal text-lg">Here's what's on your cart:</h3>
-                            <div className="overflow-y-auto flex-grow pr-1 -mr-1 cart-content">
+                            <div className="overflow-y-auto scrollbar-hidden flex-grow pr-1 -mr-1 cart-content">
                                 {isLoading && (!items || items.length === 0) ? (
                                     <div className="flex items-center justify-center h-32">
                                         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#FF5300]"></div>
@@ -289,7 +289,7 @@ const RightSidebar = () => {
 
                         <div className="mt-6 flex-shrink-0">
                             <button
-                                className="w-full bg-[#FF5300] text-[#1F1F29] py-3 rounded-full font-semibold hover:bg-[#ffd14d] transition-all duration-300 shadow-[0_18px_40px_rgba(255,174,0,0.24)] hover:-translate-y-0.5"
+                                className="w-full cursor-pointer bg-[#FF5300] text-[#1F1F29] py-3 rounded-full font-semibold hover:bg-[#ffd14d] transition-all duration-300 shadow-[0_18px_40px_rgba(255,174,0,0.24)] hover:-translate-y-0.5"
                                 onClick={handlePlaceOrder}
                                 disabled={!isAuthenticated || !items || items.length === 0}
                                 type="button"
@@ -305,7 +305,7 @@ const RightSidebar = () => {
             {isCartSidebarOpen && (
                 <div
                     onClick={toggleSidebar}
-                    className="fixed inset-0 bg-black opacity-50 z-40 block md:hidden"
+                    className="fixed inset-0 bg-black opacity-50 z-40 block md:hidden cursor-pointer"
                 />
             )}
         </>

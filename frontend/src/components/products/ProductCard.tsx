@@ -67,7 +67,7 @@ export const ProductCard: React.FC<ProductCardProps> = memo(({ product }) => {
               </h3>
               <button
                 onClick={handleToggleFavorite}
-                className={`flex-shrink-0 rounded-full border border-slate-200 bg-white p-1.5 text-slate-500 shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:scale-105 hover:border-red-200 hover:text-red-500 ${isFav ? 'bg-red-50 text-red-500 shadow-red-100' : ''}`}
+                className={`flex-shrink-0 cursor-pointer rounded-full border border-slate-200 bg-white p-1.5 text-slate-500 shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:scale-105 hover:border-red-200 hover:text-red-500 ${isFav ? 'bg-red-50 text-red-500 shadow-red-100' : ''}`}
                 aria-label={isFav ? "Remove from favorites" : "Add to favorites"}
               >
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
@@ -94,14 +94,14 @@ export const ProductCard: React.FC<ProductCardProps> = memo(({ product }) => {
 
           <div className="mt-3 grid grid-cols-2 gap-2">
             <button
-              className={`h-9 rounded-full text-xs font-semibold text-slate-900 transition-colors duration-300 cursor-pointer ${isCartLoading ? 'bg-yellow-400' : 'bg-[#FFAE00] hover:bg-yellow-600'}`}
+              className={`cursor-pointer h-9 rounded-full text-xs font-semibold text-slate-900 transition-colors duration-300 ${isCartLoading ? 'bg-yellow-400' : 'bg-[#FFAE00] hover:bg-yellow-600'}`}
               onClick={handleAddToCart}
               disabled={isCartLoading}
             >
               {isCartLoading ? 'Adding...' : 'Add to Cart'}
             </button>
             <button
-              className="h-9 rounded-full border border-[#FF5300] bg-white text-xs font-semibold text-slate-900 transition-colors duration-300 hover:bg-[#ffcfb6] cursor-pointer"
+              className="cursor-pointer h-9 rounded-full border border-[#FF5300] bg-white text-xs font-semibold text-slate-900 transition-colors duration-300 hover:bg-[#ffcfb6]"
               onClick={() => setShowDetails(true)}
             >
               View

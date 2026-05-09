@@ -310,7 +310,7 @@ const UserProfilePage = () => {
                   ) : (
                     <div
                       ref={favoritesScrollRef}
-                      className="flex h-full gap-2.5 overflow-x-auto hide-scroll scroll-smooth"
+                      className="flex h-full gap-2.5 overflow-x-auto scrollbar-hidden scroll-smooth"
                     >
                       {favorites.map((meal: Product) => (
                         <div
@@ -348,7 +348,7 @@ const UserProfilePage = () => {
                 </div>
 
                 {/* Scrollable order list */}
-                <div className="max-h-[680px] overflow-y-auto hide-scroll scroll-smooth">
+                <div className="max-h-[680px] overflow-y-auto scrollbar-hidden scroll-smooth">
                   {ordersLoading ? (
                     <div className="rounded-2xl bg-[#F3E8CC] p-6 text-center text-sm text-[#2D2D2D]/70">
                       Loading orders...

@@ -70,10 +70,10 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
       <div className="fixed inset-0 z-60 flex items-center justify-center p-4">
         <div className="relative mx-auto w-full max-w-3xl max-h-[calc(100vh-3rem)] overflow-hidden rounded-[32px] bg-white/95 shadow-[0_32px_100px_rgba(15,23,42,0.18)] ring-1 ring-slate-950/5 backdrop-blur-xl">
           <div className="flex h-full flex-col overflow-hidden" onClick={(e) => e.stopPropagation()}>
-            <div className="overflow-y-auto px-6 pt-6 pb-4">
+            <div className="overflow-y-auto scrollbar-hidden px-6 pt-6 pb-4">
               <button
                 onClick={onClose}
-                className="absolute right-6 top-6 inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm transition-all duration-200 hover:bg-slate-100 hover:text-slate-900"
+                className="absolute right-6 top-6 inline-flex cursor-pointer h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm transition-all duration-200 hover:bg-slate-100 hover:text-slate-900"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -137,7 +137,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
               <div className="flex flex-col gap-3 sm:flex-row">
                 <button
                   onClick={onToggleFavorite}
-                  className={`flex-1 rounded-full px-4 py-3 text-sm font-semibold transition-transform duration-200 shadow-sm transform-gpu hover:-translate-y-0.5 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-red-500/40 ${
+                  className={`flex-1 cursor-pointer rounded-full px-4 py-3 text-sm font-semibold transition-transform duration-200 shadow-sm transform-gpu hover:-translate-y-0.5 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-red-500/40 ${
                     isFavorite(product.id)
                       ? 'bg-red-500 text-white hover:bg-red-600'
                       : 'bg-white border-2 border-red-500 text-red-500 hover:bg-red-50'
@@ -146,7 +146,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                   {isFavorite(product.id) ? 'Added to Favorites' : 'Add to Favorites'}
                 </button>
                 <button
-                  className={`flex-1 rounded-full px-4 py-3 text-sm font-semibold text-slate-900 transition-transform duration-200 shadow-sm transform-gpu hover:-translate-y-0.5 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#FFAE00]/40 ${
+                  className={`flex-1 cursor-pointer rounded-full px-4 py-3 text-sm font-semibold text-slate-900 transition-transform duration-200 shadow-sm transform-gpu hover:-translate-y-0.5 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#FFAE00]/40 ${
                     isCartLoading ? 'bg-yellow-300 cursor-not-allowed opacity-80' : 'bg-[#FFAE00] hover:bg-yellow-600'
                   }`}
                   onClick={handleAddToCart}
