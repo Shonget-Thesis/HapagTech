@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import LeftSidebar from '../components/layout/LeftSidebar';
 import RightSidebar from '../components/layout/RightSidebar';
 import useAppStore from '../store/HomeUserStore';
@@ -9,7 +10,18 @@ import SearchBar from '../components/Searchbar';
 import UserProfile from '../components/profile/UserProfile';
 
 const Home: React.FC = () => {
-  const { activeSection } = useAppStore();
+  const location = useLocation();
+  const { activeSection, setActiveSection } = useAppStore();
+
+  useEffect(() => {
+    if (location.pathname.includes('/home/profile')) {
+      setActiveSection('profile');
+    } else if (location.pathname.includes('/home/checkout')) {
+      setActiveSection('checkout');
+    } else if (location.pathname === '/home' || location.pathname === '/home/') {
+      setActiveSection('home');
+    }
+  }, [location.pathname, setActiveSection]);
 
   const {
     categories, products, selectedCategory, handleCategorySelect,

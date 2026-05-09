@@ -24,6 +24,10 @@ const LeftSidebar: React.FC = () => {
     useEffect(() => {
         if (location.pathname.includes('/home/checkout')) {
             setActiveSection('checkout');
+        } else if (location.pathname.includes('/home/profile')) {
+            setActiveSection('profile');
+        } else if (location.pathname === '/home' || location.pathname === '/home/') {
+            setActiveSection('home');
         }
     }, [location.pathname, setActiveSection]);
 
@@ -31,6 +35,12 @@ const LeftSidebar: React.FC = () => {
         if (section === 'checkout') {
             setActiveSection('checkout');
             navigate('/home/checkout');
+            return;
+        }
+
+        if (section === 'profile') {
+            setActiveSection('profile');
+            navigate('/home/profile');
             return;
         }
 

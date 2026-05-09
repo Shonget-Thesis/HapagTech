@@ -34,6 +34,10 @@ const AnimatedRoutes = ({ isAuthenticated }: { isAuthenticated: boolean }) => {
             element={<PrivateRoute element={<Checkout />} isAuthenticated={isAuthenticated} />}
           />
           <Route
+            path="/home/profile"
+            element={<PrivateRoute element={<Home />} isAuthenticated={isAuthenticated} />}
+          />
+          <Route
             path="/home/*"
             element={<PrivateRoute element={<Home />} isAuthenticated={isAuthenticated} />}
           />
