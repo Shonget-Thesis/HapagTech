@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import LandingPage from './pages/landing/LandingPage';
 import Home from './pages/Home';
 import Checkout from './pages/Checkout';
-import Login from './pages/login';
+import Login from './pages/Login';
 import Register from './pages/Register';
 import TeamPage from './pages/TeamPage';
 import PrivacyPolicy from './pages/PrivacyPolicy';
