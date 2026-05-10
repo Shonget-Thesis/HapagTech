@@ -10,21 +10,24 @@ export const useMutationCart = () => {
     onMutate: async ({ productId, quantity }) => {
       await queryClient.cancelQueries({ queryKey: ['cart'] });
       const previousCart = queryClient.getQueryData<CartItem[]>(['cart']) || [];
-      
-      const newCart = [...previousCart];
-      const existingItem = newCart.find(item => item.product === productId);
 
-      if (existingItem) {
-        existingItem.quantity += quantity;
-      } else {
-        newCart.push({
-          id: Date.now(),
-          product: productId,
-          quantity,
-          product_name: '',  // Will be updated after server response
-          product_price: 0
-        });
-      }
+      const existingItem = previousCart.find(item => item.product === productId);
+      const newCart = existingItem
+        ? previousCart.map((item) => (
+            item.product === productId
+              ? { ...item, quantity: item.quantity + quantity }
+              : item
+          ))
+        : [
+            ...previousCart,
+            {
+              id: Date.now(),
+              product: productId,
+              quantity,
+              product_name: '',
+              product_price: 0
+            }
+          ];
 
       queryClient.setQueryData<CartItem[]>(['cart'], newCart);
       return { previousCart };

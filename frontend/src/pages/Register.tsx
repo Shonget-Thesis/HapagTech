@@ -18,29 +18,42 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [isExiting, setIsExiting] = useState(false);
+  const [formError, setFormError] = useState<string | null>(null);
   const { register, isLoading, error } = useAuthStore();
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setFormError(null);
+
+    if (!username || !email || !password || !fullName) {
+      const message = 'Please fill in all fields';
+      setFormError(message);
+      toast.error(message);
+      return;
+    }
+
     try {
-      if (!username || !email || !password || !fullName) {
-        throw new Error('Please fill in all fields');
-      }
       await register({
         username,
         email,
         password,
         full_name: fullName
       });
-      
       toast.success('Registration successful! Welcome to HapagTech.');
       setIsExiting(true);
       setTimeout(() => {
         navigate('/home', { replace: true });
       }, 300);
-    } catch (err) {
-      console.error("Registration failed:", err);
+    } catch (err: any) {
+      const message = err instanceof Error
+        ? err.message
+        : typeof err === 'string'
+          ? err
+          : 'Registration failed. Please try again.';
+      setFormError(message);
+      toast.error(message);
+      console.error('Registration failed:', err);
     }
   };
 
@@ -229,14 +242,14 @@ const Register = () => {
                 </button>
               </motion.div>
              
-              {error && (
+              {(formError || error) && (
                 <motion.p
                   className="mt-2 text-red-500"
                   variants={itemVariants}
                   initial="hidden"
                   animate="visible"
                 >
-                  {(error as any)?.response?.data?.error || 'Registration failed. Please try again.'}
+                  {formError || (typeof error === 'string' ? error : (error as Error)?.message) || 'Registration failed. Please try again.'}
                 </motion.p>
               )}
              

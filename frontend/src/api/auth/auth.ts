@@ -1,6 +1,30 @@
 import api from '../../lib/api';
 import { AuthUser, RegisterData, DietaryPreferences } from '../../utils/types';
 
+const getApiErrorMessage = (error: any, fallback: string) => {
+  if (!error) return fallback;
+
+  const responseData = error.response?.data;
+  if (responseData) {
+    if (typeof responseData === 'string') return responseData;
+    if (responseData.message) return responseData.message;
+    if (responseData.detail) return responseData.detail;
+
+    const flattened = Object.values(responseData).flatMap((value: any) => {
+      if (typeof value === 'string') return [value];
+      if (Array.isArray(value)) return value;
+      if (typeof value === 'object' && value !== null) return Object.values(value);
+      return [];
+    });
+
+    const message = flattened.find((item: any) => typeof item === 'string');
+    if (message) return message;
+    return JSON.stringify(responseData);
+  }
+
+  return error.message || fallback;
+};
+
 // The auth service handles direct API communication only
 export const authService = {
   // User authentication
@@ -27,7 +51,7 @@ export const authService = {
       if (error.response?.status === 401) {
         throw new Error('Invalid email or password');
       }
-      throw new Error(error.response?.data?.message || 'Login failed');
+      throw new Error(getApiErrorMessage(error, 'Login failed'));
     }
   },
 
@@ -40,9 +64,9 @@ export const authService = {
       return responseData;
     } catch (error: any) {
       if (error.response?.status === 400) {
-        throw new Error(error.response.data?.message || 'Invalid registration data');
+        throw new Error(getApiErrorMessage(error, 'Invalid registration data'));
       }
-      throw new Error(error.response?.data?.message || 'Registration failed');
+      throw new Error(getApiErrorMessage(error, 'Registration failed'));
     }
   },
 
