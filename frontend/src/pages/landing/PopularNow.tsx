@@ -1,14 +1,8 @@
-import React, { useEffect, useState, useRef } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-
-type Product = {
-  id: number
-  name: string
-  price: number
-  image_url?: string
-  description?: string
-  category?: string
-}
+import React, { useEffect, useRef, useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { getAllProducts } from '../../api/products/productApi'
+import { Product } from '../../utils/types'
 
 const cardVariants = {
   hidden: { opacity: 0, y: 30 },
@@ -39,11 +33,11 @@ const ItemCard: React.FC<{ product: Product; index: number }> = ({ product, inde
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
       whileHover={{ y: -8, scale: 1.02 }}
-      className="group relative overflow-hidden rounded-xl border border-black/5 bg-white shadow-lg transition-transform duration-300 w-full cursor-pointer"
+      className="group relative overflow-hidden rounded-[1.6rem] border border-black/5 bg-white shadow-[0_18px_60px_rgba(47,39,18,0.12)] transition-transform duration-300"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="relative h-44 overflow-hidden rounded-t-xl bg-white">
+      <div className="relative h-44 overflow-hidden rounded-t-[1.6rem] bg-white">
         {product.image_url ? (
           <motion.img
             src={product.image_url}
@@ -70,21 +64,22 @@ const ItemCard: React.FC<{ product: Product; index: number }> = ({ product, inde
             initial="hidden"
             animate="visible"
             exit="hidden"
-            className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 z-50 bg-white border border-black/10 rounded-lg shadow-lg p-4 max-w-xs"
+            className="absolute top-full left-1/2 z-50 mt-2 max-w-xs -translate-x-1/2 transform rounded-lg border border-black/10 bg-white p-4 shadow-lg"
             style={{ pointerEvents: 'none' }}
           >
             <div className="text-sm">
-              <p className="font-semibold mb-1">{product.name}</p>
-              <p className="text-gray-600 mb-2">{product.description}</p>
+              <p className="mb-1 font-semibold">{product.name}</p>
+              <p className="mb-2 text-gray-600">{product.description}</p>
               <p className="text-xs text-gray-500">Category: {product.category}</p>
             </div>
-            <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-b-4 border-transparent border-b-white"></div>
+            <div className="absolute -top-2 left-1/2 h-0 w-0 -translate-x-1/2 transform border-l-4 border-r-4 border-b-4 border-transparent border-b-white"></div>
           </motion.div>
         )}
       </AnimatePresence>
     </motion.article>
   )
 }
+
 const chunkProducts = (arr: Product[], size: number) => {
   const chunks: Product[][] = []
   for (let i = 0; i < arr.length; i += size) {
@@ -94,40 +89,48 @@ const chunkProducts = (arr: Product[], size: number) => {
 }
 
 const PopularNow: React.FC = () => {
-  // Placeholder products
-  const [products] = useState<Product[]>([
-    { id: 1, name: 'Pizza', price: 250, image_url: 'https://via.placeholder.com/300x200' },
-    { id: 2, name: 'Burger', price: 150, image_url: 'https://via.placeholder.com/300x200' },
-    { id: 3, name: 'Pasta', price: 200, image_url: 'https://via.placeholder.com/300x200' },
-    { id: 4, name: 'Salad', price: 120, image_url: 'https://via.placeholder.com/300x200' },
-    { id: 5, name: 'Sushi', price: 300, image_url: 'https://via.placeholder.com/300x200' },
-    { id: 6, name: 'Steak', price: 500, image_url: 'https://via.placeholder.com/300x200' },
-    { id: 7, name: 'Tacos', price: 180, image_url: 'https://via.placeholder.com/300x200' },
-    { id: 8, name: 'Ice Cream', price: 100, image_url: 'https://via.placeholder.com/300x200' },
-  ])
-
-  const chunks = chunkProducts(products, 4)
+  const [products, setProducts] = useState<Product[]>([])
   const [currentIndex, setCurrentIndex] = useState(1)
-  const [slides, setSlides] = useState<Product[][]>([])
   const slideContainerRef = useRef<HTMLDivElement | null>(null)
   const timerRef = useRef<number | null>(null)
   const isTransitioning = useRef(false)
 
-  // Setup looped slides
-  useEffect(() => {
-    if (chunks.length === 0) return
-    const last = chunks[chunks.length - 1]
-    const first = chunks[0]
-    setSlides([last, ...chunks, first])
-    setCurrentIndex(1)
-  }, [products])
+  const displayProducts = products.slice(0, 8)
+  const chunks = chunkProducts(displayProducts, 4)
+  const slides = chunks.length > 1 ? [chunks[chunks.length - 1], ...chunks, chunks[0]] : chunks
 
-  // Handle infinite loop transition
   useEffect(() => {
-    if (!slideContainerRef.current || slides.length === 0) return
+    let mounted = true
+
+    getAllProducts()
+      .then(data => {
+        if (!mounted) return
+        setProducts(data.slice(0, 8))
+      })
+      .catch(() => {
+        if (!mounted) return
+        setProducts([])
+      })
+
+    return () => {
+      mounted = false
+    }
+  }, [])
+
+  useEffect(() => {
+    if (slides.length > 1) {
+      setCurrentIndex(1)
+    } else {
+      setCurrentIndex(0)
+    }
+  }, [slides.length])
+
+  useEffect(() => {
+    if (!slideContainerRef.current || slides.length <= 1) return
 
     const handleTransitionEnd = () => {
       isTransitioning.current = false
+
       if (currentIndex >= slides.length - 1) {
         slideContainerRef.current!.style.transition = 'none'
         setCurrentIndex(1)
@@ -135,6 +138,7 @@ const PopularNow: React.FC = () => {
           slideContainerRef.current!.style.transition = 'transform 700ms ease-in-out'
         }, 10)
       }
+
       if (currentIndex <= 0) {
         slideContainerRef.current!.style.transition = 'none'
         setCurrentIndex(slides.length - 2)
@@ -149,9 +153,8 @@ const PopularNow: React.FC = () => {
     return () => container.removeEventListener('transitionend', handleTransitionEnd)
   }, [currentIndex, slides.length])
 
-  // Auto-slide
   useEffect(() => {
-    if (slides.length > 0) startAutoSlide()
+    if (slides.length > 1) startAutoSlide()
     return () => stopAutoSlide()
   }, [slides.length])
 
@@ -172,7 +175,40 @@ const PopularNow: React.FC = () => {
     }
   }
 
-  if (slides.length === 0) return null
+  const nextSlide = () => {
+    if (!isTransitioning.current && slides.length > 1) {
+      isTransitioning.current = true
+      setCurrentIndex(prev => prev + 1)
+    }
+  }
+
+  const prevSlide = () => {
+    if (!isTransitioning.current && slides.length > 1) {
+      isTransitioning.current = true
+      setCurrentIndex(prev => prev - 1)
+    }
+  }
+
+  if (products.length === 0) {
+    return (
+      <section className="relative overflow-hidden bg-[#FFAE00] py-10 md:py-12 text-[#2D2D2D]">
+        <div className="relative mx-auto w-full max-w-7xl px-2">
+          <div className="mb-8 text-center">
+            <h2 className="mx-auto w-fit text-6xl font-extrabold tracking-tight text-[#2D2D2D] md:text-6xl">
+              Popular Now
+            </h2>
+          </div>
+          <div className="grid gap-6 grid-cols-2 md:grid-cols-4">
+            {[1, 2, 3, 4].map((i) => (
+              <div key={i} className="flex h-44 items-center justify-center rounded-[1.6rem] border border-black/5 bg-white p-4 shadow-[0_12px_40px_rgba(47,39,18,0.1)]">
+                Loading...
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
 
   return (
     <section className="relative overflow-hidden bg-[#FFAE00] py-10 md:py-12 text-[#2D2D2D]">
@@ -184,6 +220,19 @@ const PopularNow: React.FC = () => {
         </div>
 
         <div className="relative">
+          <button
+            onClick={prevSlide}
+            className="absolute -left-12 top-1/2 z-10 -translate-y-1/2 text-[#2D2D2D] transition-opacity hover:opacity-100"
+          >
+            <ChevronLeft size={40} />
+          </button>
+          <button
+            onClick={nextSlide}
+            className="absolute -right-12 top-1/2 z-10 -translate-y-1/2 text-[#2D2D2D] transition-opacity hover:opacity-100"
+          >
+            <ChevronRight size={40} />
+          </button>
+
           <div
             ref={slideContainerRef}
             className="flex transition-transform duration-700 ease-in-out"
@@ -205,18 +254,18 @@ const PopularNow: React.FC = () => {
 
         <div className="mt-6 flex justify-center space-x-2">
           {chunks.map((_, index) => {
-            // actual index mapping
             const actualIndex =
               currentIndex === 0
                 ? chunks.length - 1
                 : currentIndex === slides.length - 1
-                ? 0
-                : currentIndex - 1
+                  ? 0
+                  : currentIndex - 1
+
             return (
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index + 1)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                className={`h-3 w-3 rounded-full transition-all duration-300 ${
                   index === actualIndex ? 'bg-[#2D2D2D]' : 'bg-[#2D2D2D]/30'
                 }`}
               />

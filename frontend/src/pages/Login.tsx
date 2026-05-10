@@ -16,7 +16,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [isExiting, setIsExiting] = useState(false);
-  const { login, isLoading, error, isAuthenticated } = useAuthStore();
+  const { login, isLoading, isAuthenticated } = useAuthStore();
   const navigate = useNavigate();
 
   // Check authentication status on mount and changes
@@ -199,89 +199,58 @@ const Login = () => {
              
               <motion.button
                 type="submit"
-                className="w-full py-3 bg-[#FF5300] text-white rounded-lg hover:bg-[#e64500] transition"
-                disabled={isLoading}
+                className="w-full py-3 rounded-lg bg-[#FF5300] text-white font-medium hover:bg-[#e64a00] transition-colors"
                 variants={itemVariants}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
               >
-                {isLoading ? 'Signing in...' : 'Log in'}
+                Login
               </motion.button>
             </motion.form>
-           
-            {error && (
-              <motion.p
-                className="mt-2 text-[#FF5300]"
-                variants={itemVariants}
-                initial="hidden"
-                animate="visible"
-              >
-                {(error as Error)?.message || 'Login failed. Please try again.'}
-              </motion.p>
-            )}
-           
-            <motion.p
-              className="mt-4 text-base"
-              variants={itemVariants}
-            >
-              New User? {' '}
-              <motion.a
-                href="/register"
-                className="text-[#FF5300] inline-block border-b border-transparent hover:border-[#FF5300] transition-all duration-200"
+
+            <motion.div className="mt-6 text-center text-sm text-[#6b6b6b]" variants={itemVariants}>
+              Don't have an account?{' '}
+              <button
+                type="button"
                 onClick={handleSignUpClick}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                className="text-[#FF5300] font-medium hover:underline"
               >
-                Sign Up
-              </motion.a>
-            </motion.p>
-           
-            <motion.div variants={itemVariants}>
-              <Footer />
+                Sign up
+              </button>
             </motion.div>
+
+            <Footer />
           </div>
         </motion.div>
 
-        {/* Right side with image */}
+        {/* Right Side - Images */}
         <motion.div
-          className="w-1/2 relative hidden md:block h-screen overflow-visible"
-          initial={{ opacity: 0, x: 100 }}
-          animate={{ opacity: isExiting ? 0 : 1, x: isExiting ? 100 : 0 }}
-          transition={{
-            duration: 1.2,
-            ease: "easeInOut",
-            delay: isExiting ? 0 : 0.3
-          }}
+          className="hidden md:flex md:w-1/2 relative items-center justify-center overflow-hidden bg-[#FFF5EF]"
+          variants={containerVariants}
+          initial="hidden"
+          animate={isExiting ? "exit" : "visible"}
         >
-          {/* Orange background */}
-          <img 
-            src={LoginOrange} 
-            alt="Orange background illustration" 
-            className="absolute top-0 bottom-0 right-[-26%] h-full w-[130%] object-cover"
+          <motion.img
+            src={LoginOrange}
+            alt="Login Orange"
+            className="absolute top-10 left-10 w-48 h-48 object-cover rounded-3xl shadow-lg"
+            variants={itemVariants}
           />
-
-          {/* Tomato decoration */}
-          <img 
-            src={Tomato} 
-            alt="Tomato illustration" 
-            className="absolute -top-6 right-8 w-32 lg:w-72"
-          />
-
-          {/* Spices decoration */}
-          <img 
-            src={Spices} 
-            alt="Spices illustration" 
-            className="absolute -bottom-14 right-10 w-28 lg:w-64"
-          />
-
-          {/* Food bowl */}
           <motion.img
             src={Food}
-            alt="Food overlay"
-            className="absolute top-1/2 left-[30%] -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-[70%] z-20"
-            initial={{ scale: 0.95, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 1, ease: "easeOut", delay: 0.5 }}
+            alt="Food"
+            className="absolute top-20 right-16 w-40 h-40 object-cover rounded-3xl shadow-lg"
+            variants={itemVariants}
+          />
+          <motion.img
+            src={Spices}
+            alt="Spices"
+            className="absolute bottom-20 left-16 w-36 h-36 object-cover rounded-3xl shadow-lg"
+            variants={itemVariants}
+          />
+          <motion.img
+            src={Tomato}
+            alt="Tomato"
+            className="absolute bottom-16 right-10 w-44 h-44 object-cover rounded-3xl shadow-lg"
+            variants={itemVariants}
           />
         </motion.div>
       </motion.div>
