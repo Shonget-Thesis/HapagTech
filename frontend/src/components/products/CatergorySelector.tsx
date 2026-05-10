@@ -1,10 +1,11 @@
 import React from 'react';
 import { CategorySelectorProps } from '../../utils/types';
-import image1 from '../../assets/categories/category1.png';
-import image2 from '../../assets/categories/category2.png';
-import image3 from '../../assets/categories/category3.png';    
-import image4 from '../../assets/categories/category4.png';
-import image5 from '../../assets/categories/category5.png';
+
+const image1 = new URL('../../assets/categories/category1.png', import.meta.url).href;
+const image2 = new URL('../../assets/categories/category2.png', import.meta.url).href;
+const image3 = new URL('../../assets/categories/category3.png', import.meta.url).href;
+const image4 = new URL('../../assets/categories/category4.png', import.meta.url).href;
+const image5 = new URL('../../assets/categories/category5.png', import.meta.url).href;
 
 const categoryStyles: Record<string, { image: string; bgColor: string; textColor: string; borderColor: string }> = {
   ALL: { image: image1, bgColor: 'bg-white', textColor: 'text-black', borderColor: 'border-indigo-700' },

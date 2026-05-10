@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Mail, MapPin, Phone } from "lucide-react";
-import WordMarkFooter from "../../assets/WordmarkFooter.png";
+
+const WordMarkFooter = new URL('../../assets/WordmarkFooter.png', import.meta.url).href;
 
 const Footer = () => {
   const navigate = useNavigate();

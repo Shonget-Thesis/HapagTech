@@ -2,13 +2,14 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { EyeIcon, EyeOffIcon } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import SignupYellow from '../assets/SignupYellow.png';
-import Food1 from '../assets/Food.png';
 import logoYellow from '../assets/LogoYellow.svg';
-import Tomato from '../assets/Tomato.png';
-import Spices from '../assets/Spices.png';
 import { useAuthStore } from '../hooks/auth/useauth';
 import { toast } from 'sonner';
+
+const SignupYellow = new URL('../assets/SignupYellow.png', import.meta.url).href;
+const Food1 = new URL('../assets/Food.png', import.meta.url).href;
+const Tomato = new URL('../assets/Tomato.png', import.meta.url).href;
+const Spices = new URL('../assets/Spices.png', import.meta.url).href;
 
 const Register = () => {
   const [username, setUsername] = useState('');

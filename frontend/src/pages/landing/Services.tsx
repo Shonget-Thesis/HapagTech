@@ -1,8 +1,9 @@
 import { useState, type CSSProperties } from 'react'
 import { motion } from 'framer-motion'
-import Icon1 from "../../assets/ServiceIcon1.png"
-import Icon2 from "../../assets/ServiceIcon2.png"
-import Icon3 from "../../assets/ServiceIcon3.png"
+
+const Icon1 = new URL('../../assets/ServiceIcon1.png', import.meta.url).href;
+const Icon2 = new URL('../../assets/ServiceIcon2.png', import.meta.url).href;
+const Icon3 = new URL('../../assets/ServiceIcon3.png', import.meta.url).href;
 
 interface ServiceCardData {
   image: string
