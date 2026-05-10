@@ -3,13 +3,14 @@ import { useState, useEffect } from 'react';
 import { EyeIcon, EyeOffIcon } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import logoOrange from '../assets/LogoOrange.svg';
-import LoginOrange from "../assets/LoginOrange.png";
-import Food from "../assets/Food.png"
-import Spices from "../assets/Spices.png"
-import Tomato from "../assets/Tomato.png"
 import { useAuthStore } from '../hooks/auth/useauth';
 import { ACCESS_TOKEN } from '../api/constants';
 import { toast } from 'sonner';
+
+const LoginOrange = new URL('../assets/LoginOrange.png', import.meta.url).href;
+const Food = new URL('../assets/Food.png', import.meta.url).href;
+const Spices = new URL('../assets/Spices.png', import.meta.url).href;
+const Tomato = new URL('../assets/Tomato.png', import.meta.url).href;
 
 const Login = () => {
   const [email, setEmail] = useState('');

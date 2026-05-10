@@ -4,7 +4,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuthStore } from '../../hooks/auth/useauth';
 import useAppStore from '../../store/HomeUserStore';
 import LogoOrange from '../ui/LogoOrange';
-import WordmarkLeft from '../../assets/WordmarkLeft.png';
+const WordmarkLeft = new URL('../../assets/WordmarkLeft.png', import.meta.url).href;
 
 type SectionKey = 'home' | 'checkout' | 'profile';
 

@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import FoodHp from "../../assets/FoodHero.png";
-import Food from "../../assets/Food.png";
-import Wordmark from '../../assets/Wordmark.png'
+const FoodHp = new URL('../../assets/FoodHero.png', import.meta.url).href;
+const Food = new URL('../../assets/Food.png', import.meta.url).href;
+const Wordmark = new URL('../../assets/Wordmark.png', import.meta.url).href;
 
 export const Hero = () => {
   return (
