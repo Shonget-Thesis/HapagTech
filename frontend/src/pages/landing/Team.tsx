@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react"
-import Mark from "../../assets/Team/Mark.png"
-import Roxanne from "../../assets/Team/Roxanne.png"
-import Rhenel from "../../assets/Team/Rhenel.png"
+const Mark = new URL('../../assets/Team/Mark.png', import.meta.url).href;
+const Roxanne = new URL('../../assets/Team/Roxanne.png', import.meta.url).href;
+const Rhenel = new URL('../../assets/Team/Rhenel.png', import.meta.url).href;
 import Heart from "../../assets/Team/Heart.png"
 
 interface MemberCardProps {

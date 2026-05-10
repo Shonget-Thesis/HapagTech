@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import Carousel from '../../components/ui/Carousel';
 import AnimatedCounter from '../../components/ui/AnimatedCounter';
-import StoryTitle from '../../assets/StoryTitle.png';
+const StoryTitle = new URL('../../assets/StoryTitle.png', import.meta.url).href;
 
 const About = () => {
   return (
