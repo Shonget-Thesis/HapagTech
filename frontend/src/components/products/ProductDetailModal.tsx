@@ -1,9 +1,29 @@
-import React from 'react';
-import { ProductDetailModalProps } from '../../utils/types';
+import React, { useEffect } from 'react';
+import { ProductDetailModalProps, Product } from '../../utils/types';
 import { useFavorites } from '../../hooks/favorites/usefavorites';
 import { useCart } from '../../hooks/cart/usecart';
 import { useAuthStore } from '../../hooks/auth/useauth';
 import { useNavigate } from 'react-router-dom';
+import { DIETARY_FILTER_OPTIONS, DIETARY_KEYWORDS } from '../../utils/dietaryFilters';
+
+const extractDietaryTags = (product: Product) => {
+  const searchText = [product.dietary_info, product.name, product.ingredients]
+    .filter(Boolean)
+    .join(' ')
+    .toLowerCase()
+    .replace(/[_-]/g, ' ');
+
+  if (!searchText.trim()) {
+    return [];
+  }
+
+  return [...new Set(
+    DIETARY_FILTER_OPTIONS.filter(({ value }) => {
+      const keywords = DIETARY_KEYWORDS[value] ?? [value];
+      return keywords.some((keyword) => searchText.includes(keyword));
+    }).map((option) => option.label)
+  )];
+};
 
 export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
   product,
@@ -15,130 +35,127 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
   const { addItem, isLoading: isCartLoading } = useCart();
   const { isAuthenticated } = useAuthStore();
 
-  // Safe price formatting function
+  useEffect(() => {
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, []);
+
   const formatPrice = (price: number | string | undefined) => {
     if (price === undefined || price === null) return 'N/A';
-   
-    // Convert to number if it's a string
     const numPrice = typeof price === 'string' ? parseFloat(price) : price;
-   
-    // Check if it's a valid number
     return isNaN(numPrice) ? 'N/A' : `₱${numPrice.toFixed(2)}`;
   };
 
   const handleAddToCart = async () => {
     if (!isAuthenticated) {
-      // If not authenticated, redirect to login
       navigate('/login');
       return;
     }
+
     try {
       await addItem(product.id, 1);
     } catch (error) {
-      // Error is already handled by the cart store
       console.error('Error adding to cart:', error);
     }
   };
 
+  const dietaryTags = extractDietaryTags(product);
+
   return (
     <>
-      {/* Overlay - use z-50 to ensure it's above other content */}
-      <div
-        className="fixed inset-0 z-50"
-        onClick={onClose}
-      ></div>
-
-      {/* Side Panel - use z-60 to be above the overlay */}
-      <div className="fixed right-0 top-0 h-full w-96 bg-white rounded-lg shadow-2xl p-6 z-60 overflow-y-auto flex flex-col">
-        <div className="relative mb-4">
-          <button
-            onClick={onClose}
-            className="absolute top-0 right-0 text-black hover:text-gray-700"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-          <h2 className="text-2xl font-bold text-blue-900 break-words">{product.name}</h2>
-        </div>
-
-        {/* Description */}
-        <div className="mb-4">
-          <h3 className="font-semibold text-gray-700">Description</h3>
-          <p className="text-sm text-gray-600">
-            {product.description || 'No description available'}
-          </p>
-        </div>
-
-        {/* Product Image */}
-        <div className="mb-4">
-          {product.image_url ? (
-            <img
-              src={product.image_url}
-              alt={product.name}
-              className="w-full h-48 object-cover rounded-lg"
-            />
-          ) : (
-            <div className="w-full h-48 bg-gray-200 flex items-center justify-center">
-              <span className="text-gray-500">No Image</span>
-            </div>
-          )}
-        </div>
-
-        {/* Scrollable Content */}
-        <div className="flex-grow overflow-y-auto pr-2">
-          <div className="mb-4">
-            <h3 className="font-semibold text-gray-700">Ingredients</h3>
-            <p className="text-sm text-gray-600">
-              {product.ingredients || 'No ingredients listed'}
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 gap-2 mb-4">
-            <div>
-              <h3 className="font-semibold text-gray-700">Serving Size</h3>
-              <p className="text-sm text-gray-600">
-                {product.serving_size || 'N/A'}
-              </p>
-            </div>
-            <div>
-              <h3 className="font-semibold text-gray-700">Dietary Info</h3>
-              <p className="text-sm text-gray-600">
-                {product.dietary_info || 'No info'}
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Fixed Bottom Section */}
-        <div className="sticky bottom-0 left-0 w-full bg-white pt-4 border-t">
-          <div className="mb-4">
-            <span className="text-lg font-bold text-black block mb-2">
-              {formatPrice(product.price)}
-            </span>
-            <div className="flex space-x-2">
+      <div className="fixed inset-0 z-50 bg-black/30 backdrop-blur-sm" onClick={onClose} />
+      <div className="fixed inset-0 z-60 flex items-center justify-center p-4">
+        <div className="relative mx-auto w-full max-w-3xl max-h-[calc(100vh-3rem)] overflow-hidden rounded-[32px] bg-white/95 shadow-[0_32px_100px_rgba(15,23,42,0.18)] ring-1 ring-slate-950/5 backdrop-blur-xl">
+          <div className="flex h-full flex-col overflow-hidden" onClick={(e) => e.stopPropagation()}>
+            <div className="overflow-y-auto scrollbar-hidden px-6 pt-6 pb-4">
               <button
-                onClick={onToggleFavorite}
-                className={`flex-1 px-3 py-2 rounded-full text-sm ${
-                  isFavorite(product.id)
-                    ? 'bg-red-400 text-white'
-                    : 'bg-red-100 text-red-400'
-                }`}
+                onClick={onClose}
+                className="absolute right-6 top-6 inline-flex cursor-pointer h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm transition-all duration-200 hover:bg-slate-100 hover:text-slate-900"
               >
-                {isFavorite(product.id) ? 'Favorited' : 'Add to Favorites'}
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
               </button>
-              <button
-                className={`flex-1 text-white py-2 rounded-full ${
-                  isCartLoading
-                    ? 'bg-blue-400 cursor-not-allowed'
-                    : 'bg-[#32347C] hover:bg-blue-950'
-                }`}
-                onClick={handleAddToCart}
-                disabled={isCartLoading}
-              >
-                {isCartLoading ? 'Adding...' : isAuthenticated ? 'Add to Cart' : 'Login to Add'}
-              </button>
+
+              <div className="mb-4">
+                <h2 className="text-3xl font-bold text-slate-900">{product.name}</h2>
+              </div>
+
+              <div className="mb-4">
+                <h3 className="font-semibold text-gray-700">Description</h3>
+                <p className="text-sm text-gray-600">
+                  {product.description || 'No description available'}
+                </p>
+              </div>
+
+              <div className="mb-4">
+                {product.image_url ? (
+                  <img src={product.image_url} alt={product.name} className="w-full h-56 rounded-3xl object-cover" />
+                ) : (
+                  <div className="w-full h-56 rounded-3xl bg-gray-200 flex items-center justify-center">
+                    <span className="text-gray-500">No Image</span>
+                  </div>
+                )}
+              </div>
+
+              <div className="mb-4">
+                <h3 className="font-semibold text-gray-700">Ingredients</h3>
+                <p className="text-sm text-gray-600">{product.ingredients || 'No ingredients listed'}</p>
+              </div>
+
+              <div className="mb-4">
+                <h3 className="font-semibold text-gray-700">Serving Size</h3>
+                <p className="text-sm text-gray-600">{product.serving_size || 'N/A'}</p>
+              </div>
+
+              <div className={dietaryTags.length > 0 ? 'mb-4' : 'mb-0'}>
+                <h3 className="font-semibold text-gray-700">Dietary Info</h3>
+                <p className="text-sm text-gray-600">{product.dietary_info || 'No info'}</p>
+              </div>
+
+              {dietaryTags.length > 0 && (
+                <div className="mb-0">
+                  <h3 className="font-semibold text-gray-700">Tags</h3>
+                  <div className="mt-2 flex flex-wrap gap-2">
+                    {dietaryTags.map((tag) => (
+                      <span key={tag} className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold uppercase tracking-[0.08em] text-slate-700">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
+
+            <div className="border-t border-slate-200/70 bg-white/90 px-6 py-5 backdrop-blur-sm">
+              <span className="text-lg font-bold text-black block mb-3">
+                {formatPrice(product.price)}
+              </span>
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <button
+                  onClick={onToggleFavorite}
+                  className={`flex-1 cursor-pointer rounded-full px-4 py-3 text-sm font-semibold transition-transform duration-200 shadow-sm transform-gpu hover:-translate-y-0.5 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-red-500/40 ${
+                    isFavorite(product.id)
+                      ? 'bg-red-500 text-white hover:bg-red-600'
+                      : 'bg-white border-2 border-red-500 text-red-500 hover:bg-red-50'
+                  }`}
+                >
+                  {isFavorite(product.id) ? 'Added to Favorites' : 'Add to Favorites'}
+                </button>
+                <button
+                  className={`flex-1 cursor-pointer rounded-full px-4 py-3 text-sm font-semibold text-slate-900 transition-transform duration-200 shadow-sm transform-gpu hover:-translate-y-0.5 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#FFAE00]/40 ${
+                    isCartLoading ? 'bg-yellow-300 cursor-not-allowed opacity-80' : 'bg-[#FFAE00] hover:bg-yellow-600'
+                  }`}
+                  onClick={handleAddToCart}
+                  disabled={isCartLoading}
+                >
+                  {isCartLoading ? 'Adding...' : isAuthenticated ? 'Add to Cart' : 'Login to Add'}
+                </button>
+              </div>
+            </div>          
           </div>
         </div>
       </div>

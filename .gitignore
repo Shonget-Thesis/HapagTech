@@ -15,6 +15,7 @@ dist-ssr
 
 # === Django (Backend) ===
 venv/
+.venv/
 __pycache__/
 *.pyc
 .env

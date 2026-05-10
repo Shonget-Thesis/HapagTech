@@ -158,6 +158,15 @@ export interface SearchBarProps {
     className?: string;
     onSearch?: (query: string) => void;
     initialValue?: string;
+    dietaryOptions?: DietaryFilterOption[];
+    selectedDietaryFilters?: string[];
+    onToggleDietaryFilter?: (filterValue: string) => void;
+    onClearDietaryFilters?: () => void;
+}
+
+export interface DietaryFilterOption {
+    value: string;
+    label: string;
 }
 
 export interface CategorySelectorProps {

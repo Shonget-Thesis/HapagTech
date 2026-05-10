@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import { AnimatePresence, motion } from 'framer-motion';
 import LandingPage from './pages/landing/LandingPage';
 import Home from './pages/Home';
+import Checkout from './pages/Checkout';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import TeamPage from './pages/TeamPage';
@@ -28,6 +29,14 @@ const AnimatedRoutes = ({ isAuthenticated }: { isAuthenticated: boolean }) => {
           <Route path="/team" element={<TeamPage />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<TermsAndConditions />} />
+          <Route
+            path="/home/checkout"
+            element={<PrivateRoute element={<Checkout />} isAuthenticated={isAuthenticated} />}
+          />
+          <Route
+            path="/home/profile"
+            element={<PrivateRoute element={<Home />} isAuthenticated={isAuthenticated} />}
+          />
           <Route
             path="/home/*"
             element={<PrivateRoute element={<Home />} isAuthenticated={isAuthenticated} />}
