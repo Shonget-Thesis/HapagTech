@@ -1,197 +1,25 @@
-```yaml
-name: CI/CD Deployment
+import unittest
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
 
-on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
+class LoginPageTest(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        chrome_options = Options()
+        chrome_options.add_argument('--headless')
+        chrome_options.add_argument('--no-sandbox')
+        chrome_options.add_argument('--disable-dev-shm-usage')
+        cls.driver = webdriver.Chrome(options=chrome_options)
+        cls.driver.implicitly_wait(10)
 
-concurrency:
-  group: deploy-${{ github.ref }}
-  cancel-in-progress: true
+    @classmethod
+    def tearDownClass(cls):
+        cls.driver.quit()
 
-env:
-  NODE_VERSION: "20"
-  PYTHON_VERSION: "3.11"
+    def test_login_page_loads(self):
+        self.driver.get('http://localhost:8000/login')
+        self.assertIn('login', self.driver.current_url)
 
-jobs:
-  backend-tests:
-    name: Backend Tests
-    runs-on: ubuntu-latest
-
-    defaults:
-      run:
-        working-directory: backend
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: ${{ env.PYTHON_VERSION }}
-
-      - name: Install backend dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-
-      - name: Run Django tests
-        env:
-          DATABASE_URL: sqlite:///db.sqlite3
-          CLOUDINARY_CLOUD_NAME: ${{ secrets.CLOUDINARY_CLOUD_NAME }}
-          CLOUDINARY_API_KEY: ${{ secrets.CLOUDINARY_API_KEY }}
-          CLOUDINARY_API_SECRET: ${{ secrets.CLOUDINARY_API_SECRET }}
-        run: python manage.py test
-
-  cypress-tests:
-    name: Cypress E2E Tests
-    runs-on: ubuntu-latest
-
-    defaults:
-      run:
-        working-directory: frontend
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: npm
-          cache-dependency-path: frontend/package-lock.json
-
-      - name: Install frontend dependencies
-        run: npm ci
-
-      - name: Install Cypress
-        run: npm install cypress --save-dev
-
-      - name: Install wait-on
-        run: npm install wait-on --save-dev
-
-      - name: Start frontend server
-        run: npm run dev &
-        env:
-          NODE_ENV: test
-
-      - name: Wait for frontend to be ready
-        run: npx wait-on http://localhost:5173
-
-      - name: Run Cypress tests
-        run: npx cypress run
-
-  selenium-tests:
-    name: Selenium E2E Tests
-    runs-on: ubuntu-latest
-
-    defaults:
-      run:
-        working-directory: backend
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: ${{ env.PYTHON_VERSION }}
-
-      - name: Install backend dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-          pip install selenium
-
-      - name: Install Chromium
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y chromium-browser
-
-      - name: Run Selenium tests
-        env:
-          DATABASE_URL: sqlite:///db.sqlite3
-        run: |
-          python -m unittest discover -s tests/selenium
-
-  deploy-frontend:
-    name: Deploy Frontend to Vercel
-    needs:
-      - backend-tests
-      - cypress-tests
-      - selenium-tests
-
-    runs-on: ubuntu-latest
-    if: github.event_name == 'push'
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-
-      - name: Deploy frontend
-        env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_FRONTEND_PROJECT_ID }}
-        run: |
-          npm install -g vercel@latest
-          cd frontend
-          vercel deploy --prod --token "$VERCEL_TOKEN" --yes
-
-  deploy-backend:
-    name: Deploy Backend to Vercel
-    needs:
-      - backend-tests
-      - cypress-tests
-      - selenium-tests
-      - deploy-frontend
-
-    runs-on: ubuntu-latest
-    if: github.event_name == 'push'
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-
-      - name: Deploy backend
-        env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_BACKEND_PROJECT_ID }}
-        run: |
-          npm install -g vercel@latest
-          cd backend
-          vercel deploy --prod --token "$VERCEL_TOKEN" --yes
-
-  smoke-test:
-    name: Smoke Test
-    needs:
-      - deploy-frontend
-      - deploy-backend
-
-    runs-on: ubuntu-latest
-    if: github.event_name == 'push'
-
-    steps:
-      - name: Validate production homepage
-        env:
-          PRODUCTION_URL: ${{ secrets.PRODUCTION_URL }}
-        run: |
-          curl -fsS "$PRODUCTION_URL" >/dev/null
-          curl -fsS "$PRODUCTION_URL/login" >/dev/null
-```
+if __name__ == '__main__':
+    unittest.main()
