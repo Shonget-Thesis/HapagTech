@@ -80,6 +80,13 @@ jobs:
       - name: Run Cypress tests
         run: npx cypress run
 
+      - name: Upload Cypress screenshots on failure
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: frontend/cypress/screenshots
+
   selenium-tests:
     name: Selenium E2E Tests
     runs-on: ubuntu-latest
@@ -131,6 +138,13 @@ jobs:
           DATABASE_URL: sqlite:///db.sqlite3
         run: |
           python -m unittest discover -s tests/selenium
+
+      - name: Upload Selenium logs on failure
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: selenium-logs
+          path: backend/tests/selenium/logs
 
   deploy-frontend:
     name: Deploy Frontend to Vercel

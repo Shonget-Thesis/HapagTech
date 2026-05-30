@@ -24,6 +24,9 @@
     "zustand": "^5.0.3"
   },
   "devDependencies": {
+    "@cypress/code-coverage": "^3.10.0",
+    "cypress": "^13.0.0",
+    "mocha-junit-reporter": "^2.2.0",
     "@eslint/js": "^9.21.0",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
