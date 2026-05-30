@@ -156,7 +156,7 @@ jobs:
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_FRONTEND_PROJECT_ID }}
         run: |
           npm install -g vercel
-          vercel deploy --prod --token "$VERCEL_TOKEN" --yes --cwd frontend
+          vercel deploy --prod --token "$VERCEL_TOKEN" --yes
 
   deploy-backend:
     name: Deploy Backend to Vercel
