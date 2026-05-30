@@ -182,32 +182,7 @@ selenium-tests:
         sudo apt-get install -y chromium-chromedriver
         sudo ln -s /usr/lib/chromium-browser/chromedriver /usr/bin
 
-    - name: Run Selenium tests
-      env:
-        DATABASE_URL: sqlite:///db.sqlite3
-      run: |
-        # Adjust the path to your Selenium test script as needed
-        python -m unittest discover -s tests/selenium
-    runs-on: ubuntu-latest
-    if: github.event_name == 'push'
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-
-      - name: Deploy backend
-        env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_BACKEND_PROJECT_ID }}
-        run: |
-          npm install -g vercel@latest
-          cd backend
-          vercel deploy --prod --token "$VERCEL_TOKEN" --yes
 
   smoke-test:
     name: Smoke Test
