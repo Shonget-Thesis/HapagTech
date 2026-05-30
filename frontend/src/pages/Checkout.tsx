@@ -166,7 +166,7 @@ const Checkout: React.FC = () => {
 
       {/*
         No max-width cap so both columns expand fully into the viewport.
-        Padding provides breathing room without killing column width.
+        Padding provides breathing room without killing column width ywa.
       */}
       <div className="xl:h-full flex flex-col px-4 py-5 sm:px-5 lg:px-6 xl:py-6 max-w-7xl mx-auto">
 
