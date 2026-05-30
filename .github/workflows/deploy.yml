@@ -100,73 +100,94 @@ jobs:
       - frontend-build
       - cypress-tests
       - selenium-tests
-      cypress-tests:
-        name: Cypress E2E Tests
-        runs-on: ubuntu-latest
-        defaults:
-          run:
-            working-directory: frontend
-        steps:
-          - name: Checkout repository
-            uses: actions/checkout@v4
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-          - name: Set up Node.js
-            uses: actions/setup-node@v4
-            with:
-              node-version: ${{ env.NODE_VERSION }}
-              cache: npm
-              cache-dependency-path: frontend/package-lock.json
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
 
-          - name: Install frontend dependencies
-            run: npm ci
+      - name: Deploy backend
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_BACKEND_PROJECT_ID }}
+        run: |
+          npm install -g vercel@latest
+          cd backend
+          vercel deploy --prod --token "$VERCEL_TOKEN" --yes
 
-          - name: Install Cypress
-            run: npm install cypress --save-dev
+cypress-tests:
+  name: Cypress E2E Tests
+  runs-on: ubuntu-latest
+  defaults:
+    run:
+      working-directory: frontend
+  steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
 
-          - name: Start frontend server
-            run: npm run dev &
-            env:
-              NODE_ENV: test
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: npm
+        cache-dependency-path: frontend/package-lock.json
 
-          - name: Wait for frontend to be ready
-            run: npx wait-on http://localhost:5173
+    - name: Install frontend dependencies
+      run: npm ci
 
-          - name: Run Cypress tests
-            run: npx cypress run
+    - name: Install Cypress
+      run: npm install cypress --save-dev
 
-      selenium-tests:
-        name: Selenium E2E Tests
-        runs-on: ubuntu-latest
-        defaults:
-          run:
-            working-directory: backend
-        steps:
-          - name: Checkout repository
-            uses: actions/checkout@v4
+    - name: Start frontend server
+      run: npm run dev &
+      env:
+        NODE_ENV: test
 
-          - name: Set up Python
-            uses: actions/setup-python@v5
-            with:
-              python-version: ${{ env.PYTHON_VERSION }}
+    - name: Wait for frontend to be ready
+      run: npx wait-on http://localhost:5173
 
-          - name: Install backend dependencies
-            run: |
-              python -m pip install --upgrade pip
-              pip install -r requirements.txt
-              pip install selenium
+    - name: Run Cypress tests
+      run: npx cypress run
 
-          - name: Install ChromeDriver
-            run: |
-              sudo apt-get update
-              sudo apt-get install -y chromium-chromedriver
-              sudo ln -s /usr/lib/chromium-browser/chromedriver /usr/bin
+selenium-tests:
+  name: Selenium E2E Tests
+  runs-on: ubuntu-latest
+  defaults:
+    run:
+      working-directory: backend
+  steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
 
-          - name: Run Selenium tests
-            env:
-              DATABASE_URL: sqlite:///db.sqlite3
-            run: |
-              # Adjust the path to your Selenium test script as needed
-              python -m unittest discover -s tests/selenium
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+
+    - name: Install backend dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install selenium
+
+    - name: Install ChromeDriver
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y chromium-chromedriver
+        sudo ln -s /usr/lib/chromium-browser/chromedriver /usr/bin
+
+    - name: Run Selenium tests
+      env:
+        DATABASE_URL: sqlite:///db.sqlite3
+      run: |
+        # Adjust the path to your Selenium test script as needed
+        python -m unittest discover -s tests/selenium
     runs-on: ubuntu-latest
     if: github.event_name == 'push'
     steps:
